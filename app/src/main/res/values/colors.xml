@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="logincolor">#B1E1F8</color>
+    <color name="colorWrite">#FFFFFF</color>
+    <color name="mineItemBgPress">#CFCFCF</color>
+    <color name="colorTextMain">#FC6B87</color>
+
+    <color name="search_backcolor">#EEEEEE</color>
+
+    <color name="colorTextBlue">#96D9F8</color>
+
+    <color name="colorTextBlack">#535050</color>
+    <color name="square">#EEEEEEEE</color>
+
+    <color name="colorTransparent">#00000000</color>
+</resources>

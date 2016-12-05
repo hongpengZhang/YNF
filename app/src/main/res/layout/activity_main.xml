@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <bw.com.yunifangstore.view.NoScrollViewPager
+        android:id="@+id/viewPager_Main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <RadioGroup
+        android:background="#fff"
+        android:id="@+id/radioGroup_Main"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:checked="true"
+            android:id="@+id/rb_home_page"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/home_selector"
+            android:gravity="center_horizontal"
+            android:text="首页" />
+
+        <RadioButton
+            android:id="@+id/rb_category"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/classify_selector"
+            android:gravity="center_horizontal"
+            android:text="分类" />
+
+        <RadioButton
+            android:id="@+id/rb_cart"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/shopping_selector"
+            android:gravity="center_horizontal"
+            android:text="购物车" />
+
+        <RadioButton
+            android:id="@+id/rb_mine"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/user_selector"
+            android:gravity="center_horizontal"
+            android:text="我的" />
+    </RadioGroup>
+</LinearLayout>

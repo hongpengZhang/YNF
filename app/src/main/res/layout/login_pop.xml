@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60px"
+        android:text="第三方快速登录 >"
+        android:textColor="#FC6B87"
+        android:textSize="50px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="60px"
+        android:text="第三方快速登录用户不享受任何御泥坊会员权益" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:background="#fff"
+        android:layout_marginBottom="160px"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_marginLeft="80px"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:background="@drawable/selector_login_qq" />
+
+        <ImageButton
+            android:layout_centerHorizontal="true"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:background="@drawable/selector_login_sina" />
+
+        <ImageButton
+            android:layout_marginRight="80px"
+            android:layout_alignParentRight="true"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:background="@drawable/selector_login_weixin"
+            android:id="@+id/imageButton" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+        <ImageView
+            android:id="@+id/lastgv_img"
+            android:layout_width="400px"
+            android:layout_height="500px"
+            android:layout_gravity="center_horizontal"
+            android:padding="16px" />
+
+        <TextView
+            android:id="@+id/last_gv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="xxx"
+            android:textColor="#000" />
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ssss"
+            android:lines="2"
+            android:id="@+id/last_tvdes"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="20px"
+            >
+            <TextView
+                android:id="@+id/last_gv_newprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="xxx"
+                android:textSize="40px"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:textSize="35px"
+                android:layout_marginLeft="20px"
+                android:id="@+id/last_gv_oldprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="#55000000"
+                android:text="xxx" />
+        </LinearLayout>
+
+</LinearLayout>

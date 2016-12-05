@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    >
+    <!--搜索的头部布局-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180px">
+        <ImageView
+            android:id="@+id/category_seach_img"
+            android:layout_marginBottom="30px"
+            android:layout_marginTop="30px"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:background="@drawable/search_back"
+           />
+        <ImageView
+            android:layout_marginLeft="80px"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_search"/>
+        <TextView
+            android:textSize="17sp"
+            android:layout_marginLeft="180px"
+            android:layout_centerVertical="true"
+            android:textColor="#A0A0A0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请输入商品名称"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <include
+                layout="@layout/category_toplayout"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

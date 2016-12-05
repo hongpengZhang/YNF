@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:text="御泥坊VIP商城"
+        android:textColor="@color/colorTextMain"
+        android:textSize="50px" />
+
+    <!--自定义控件SpringView-->
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/springView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/home_ScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--自动轮播-->
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <bw.com.yunifangstore.view.RoolViewPager
+                        android:id="@+id/roolViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="450px" />
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:id="@+id/ll_layoutdots"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/roolViewPager"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="60px"
+                        android:orientation="horizontal" />
+
+                </com.zhy.autolayout.AutoRelativeLayout>
+                <!--四项专区-->
+                <bw.com.yunifangstore.view.MyGridView
+                    android:id="@+id/ad5_gridView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="4"
+                    android:scrollbars="none" />
+                <!--本周热销-->
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:id="@+id/bzrx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/benWork_rlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="120px"
+                        android:layout_marginTop="30px"
+                        android:background="#fff">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="80px"
+                            android:layout_height="60px"
+                            android:layout_alignBottom="@+id/textView6"
+                            android:layout_marginLeft="20px"
+                            android:layout_toRightOf="@+id/textView6"
+                            android:src="@mipmap/home" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="本周热销"
+                            android:textSize="40px" />
+
+                        <ImageView
+                            android:layout_width="80px"
+                            android:layout_height="60px"
+                            android:layout_alignBottom="@+id/textView6"
+                            android:layout_marginRight="20px"
+                            android:layout_toLeftOf="@+id/textView6"
+                            android:src="@mipmap/home" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="520px" />
+
+                </com.zhy.autolayout.AutoLinearLayout>
+                <!--优惠活动插入-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="— 优惠活动 —"
+                        android:textSize="40px" />
+                </RelativeLayout>
+
+                <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#fff"
+                    android:clipChildren="false">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/activityInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="550px"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="180px"
+                        android:layout_marginRight="180px"
+                        android:clipChildren="false" />
+
+                </FrameLayout>
+                <!--热门专题的插入-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="— 热门专题 —"
+                        android:textSize="40px" />
+                </RelativeLayout>
+
+                <bw.com.yunifangstore.view.MyListView
+                    android:id="@+id/hot_myListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <bw.com.yunifangstore.view.MyGridView
+                    android:id="@+id/last_gridView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:background="#44000000"
+                    android:horizontalSpacing="1px"
+                    android:numColumns="2"
+                    android:scrollbars="none"
+                    android:verticalSpacing="1px" />
+
+                <TextView
+                    android:id="@+id/query_goods"
+                    android:layout_width="match_parent"
+                    android:layout_height="130px"
+                    android:gravity="center"
+                    android:text="查看所有商品"
+                    android:textColor="#55000000"
+                    android:textSize="45px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </ScrollView>
+    </com.liaoinstan.springview.widget.SpringView>
+</com.zhy.autolayout.AutoLinearLayout>
+
+
+
