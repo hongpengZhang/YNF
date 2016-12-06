@@ -1,5 +1,6 @@
 package bw.com.yunifangstore.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @date : 2016/12/2.
  */
 
-public class RoolData {
+public class RoolData implements Serializable {
 
     /**
      * code : 200
@@ -53,7 +54,7 @@ public class RoolData {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean  implements Serializable{
         /**
          * activityAreaDisplay : 1
          * activityInfoList : [{"id":"1","activityImg":"http://image.hmeili.com/yunifang/images/goods/temp/161126204242819893797816568.jpg","activityType":"4","activityData":"163","activityDataDetail":"163","startSeconds":"-379464","endSeconds":"117335","activityStatus":"2","activityAreaDisplay":"1","countDownEnable":"1","starttime":"2016.11.28 00:00:00","endtime":"2016.12.03 18:00:00","sort":0},{"id":"9","activityImg":"http://image.hmeili.com/yunifang/images/goods/temp/16113010502594259795858066.jpg","activityType":"1","activityData":"http://h.yunifang.com/h/comment2.html","activityDataDetail":"http%3A%2F%2Fh.yunifang.com%2Fh%2Fcomment2.html","activityAreaDisplay":"1","countDownEnable":"0","starttime":"2016.09.06 10:00:00","endtime":"2016.09.12 10:00:00","sort":0},{"id":"21","activityImg":"http://image.hmeili.com/yunifang/images/goods/temp/1611141100711533046163493.jpg","activityType":"1","activityData":"http://m.yunifang.com/yunifang/web/client-h5/invite/invite.html?login_check=2","activityDataDetail":"http%3A%2F%2Fm.yunifang.com%2Fyunifang%2Fweb%2Fclient-h5%2Finvite%2Finvite.html%3Flogin_check%3D2","activityAreaDisplay":"1","countDownEnable":"0","sort":0},{"id":"24","activityImg":"http://image.hmeili.com/yunifang/images/goods/temp/16112218589414258361368800.jpg","activityType":"35","startSeconds":"-689064","endSeconds":"-257064","activityStatus":"1","activityAreaDisplay":"1","countDownEnable":"1","starttime":"2016.11.24 10:00:00","endtime":"2016.11.29 10:00:00","sort":0}]
@@ -192,7 +193,7 @@ public class RoolData {
             this.defaultGoodsList = defaultGoodsList;
         }
 
-        public static class ActivityInfoBean {
+        public static class ActivityInfoBean  implements Serializable{
             private String activityAreaDisplay;
             /**
              * id : 1
@@ -228,7 +229,7 @@ public class RoolData {
                 this.activityInfoList = activityInfoList;
             }
 
-            public static class ActivityInfoListBean {
+            public static class ActivityInfoListBean  implements Serializable{
                 private String id;
                 private String activityImg;
                 private String activityType;
@@ -349,7 +350,7 @@ public class RoolData {
             }
         }
 
-        public static class SubjectsBean {
+        public static class SubjectsBean  implements Serializable{
             private String id;
             private String title;
             private String detail;
@@ -451,7 +452,7 @@ public class RoolData {
                 this.goodsList = goodsList;
             }
 
-            public static class GoodsListBean {
+            public static class GoodsListBean  implements Serializable{
                 private String id;
                 private String goods_name;
                 private double shop_price;
@@ -518,7 +519,7 @@ public class RoolData {
             }
         }
 
-        public static class BestSellersBean {
+        public static class BestSellersBean  implements Serializable{
             private String id;
             private String name;
             private String descript;
@@ -602,7 +603,7 @@ public class RoolData {
                 this.goodsList = goodsList;
             }
 
-            public static class GoodsListBean {
+            public static class GoodsListBean  implements Serializable{
                 private String id;
                 private String goods_name;
                 private double shop_price;
@@ -669,7 +670,7 @@ public class RoolData {
             }
         }
 
-        public static class Ad1Bean {
+        public static class Ad1Bean  implements Serializable{
             private String id;
             private String image;
             private int ad_type;
@@ -798,7 +799,7 @@ public class RoolData {
             }
         }
 
-        public static class Ad5Bean {
+        public static class Ad5Bean  implements Serializable{
             private String id;
             private String image;
             private int ad_type;
@@ -900,7 +901,7 @@ public class RoolData {
             }
         }
 
-        public static class DefaultGoodsListBean {
+        public static class DefaultGoodsListBean implements Serializable {
             private String id;
             private String goods_name;
             private double shop_price;

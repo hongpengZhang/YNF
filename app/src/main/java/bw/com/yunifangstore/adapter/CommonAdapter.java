@@ -34,6 +34,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
         return mDatas.size();
     }
 
+
     @Override
     public T getItem(int position)
     {

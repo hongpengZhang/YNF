@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="50px"
+    android:layout_marginBottom="20px"
     android:background="#fff">
 
     <!--第二模块,分类-->

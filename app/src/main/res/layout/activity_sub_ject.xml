@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sub_ject"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context="bw.com.yunifangstore.activity.SubJectActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/title_setting" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#55000000"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="650px"
+            android:background="#fff"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@mipmap/subjects_detail_bg" />
+
+            <TextView
+                android:id="@+id/sub_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginTop="80px"
+                android:lines="2"
+                android:singleLine="false"
+                android:text="#2016年度爆款#"
+                android:textColor="#000"
+                android:textSize="45px" />
+
+            <TextView
+                android:id="@+id/tv_datail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/sub_tv_title"
+                android:layout_below="@+id/sub_tv_title"
+                android:text="【2016.12.8-2】"
+                android:textColor="#88000000" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40px"
+            android:background="#fff"
+            android:orientation="vertical">
+
+            <bw.com.yunifangstore.view.MyGridView
+                android:id="@+id/sub_gridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:horizontalSpacing="2px"
+                android:numColumns="2"
+                android:background="#EEEEEE"
+                android:scrollbars="none"
+                android:verticalSpacing="2px" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

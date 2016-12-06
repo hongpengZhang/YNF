@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="130px"
+    android:background="#FFFFFF"
+    android:orientation="horizontal">
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_gravity="center"
+        android:layout_marginRight="80px">
+
+        <ImageView
+            android:id="@+id/iv_title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/back" />
+
+    </com.zhy.autolayout.AutoFrameLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0px"
+        android:layout_height="80px"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#77000000"
+        android:textSize="45px" />
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/share_selector"
+            />
+
+    </com.zhy.autolayout.AutoFrameLayout>
+
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/but_title_shopping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/goods_shopping_cart"
+            android:visibility="gone" />
+
+    </com.zhy.autolayout.AutoFrameLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

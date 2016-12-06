@@ -1,6 +1,7 @@
 package bw.com.yunifangstore.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,9 +10,11 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.io.Serializable;
 import java.util.List;
 
 import bw.com.yunifangstore.R;
+import bw.com.yunifangstore.activity.SubJectActivity;
 import bw.com.yunifangstore.bean.RoolData;
 import bw.com.yunifangstore.utils.CommonUtils;
 import bw.com.yunifangstore.utils.ImageLoaderUtils;
@@ -32,9 +35,28 @@ public class MyCommonAdapter extends CommonAdapter<RoolData.DataBean.SubjectsBea
 
     @Override
     public void convert(ViewHolder helper, RoolData.DataBean.SubjectsBean item) {
-        int position = helper.getPosition();
+        final int position = helper.getPosition();
+        ImageView hot_iv = helper.getView(R.id.hot_iv);
         LinearLayout hot_llt_layout = helper.getView(R.id.hot_llt_layout);
         helper.setImageByUrl(R.id.hot_iv, subjectsList.get(position).getImage());
+        addLlt_Layout(position, hot_llt_layout);
+        /**
+         * 跳转到专题Activity
+         */
+        hot_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SubJectActivity.class);
+                intent.putExtra("title",subjectsList.get(position).getTitle());
+                intent.putExtra("detail",subjectsList.get(position).getDetail());
+                intent.putExtra("list", (Serializable) subjectsList.get(position).getGoodsList());
+
+                context.startActivity(intent);
+            }
+        });
+    }
+
+    private void addLlt_Layout(int position, LinearLayout hot_llt_layout) {
         hot_llt_layout.removeAllViews();
         for (int i = 0; i < 6; i++) {
             View inflate = CommonUtils.inflate(R.layout.recycle_item);

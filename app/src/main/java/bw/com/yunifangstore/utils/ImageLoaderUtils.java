@@ -73,9 +73,9 @@ public class ImageLoaderUtils {
     public static DisplayImageOptions initCircleOptions() {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 // 设置图片在下载期间显示的图片
-                .showImageOnLoading(R.mipmap.ic_launcher)
+                .showImageOnLoading(R.mipmap.coupon_unuse_bottle)
                 // 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.mipmap.ic_launcher)
+                .showImageOnFail(R.mipmap.coupon_unuse_bottle)
                 // 设置下载的图片是否缓存在内存中
                 .cacheInMemory(true)
                 // 设置下载的图片是否缓存在SD卡中
@@ -110,9 +110,9 @@ public class ImageLoaderUtils {
     public static DisplayImageOptions initOptions() {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 // 设置图片在下载期间显示的图片
-                .showImageOnLoading(R.drawable.default_1)
+                .showImageOnLoading(R.mipmap.coupon_unuse_bottle)
                 // 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.drawable.default_1)
+                .showImageOnFail(R.mipmap.coupon_used_bottle)
                 // 设置下载的图片是否缓存在内存中
                 .cacheInMemory(true)
                 // 设置下载的图片是否缓存在SD卡中

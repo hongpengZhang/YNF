@@ -26,6 +26,8 @@ public class CommonUtils {
         return MyApplication.getMainThreadId();
     }
 
+
+
     /**
      * 获取资源文件夹操作
      */

@@ -1,52 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    >
+    android:orientation="vertical">
     <!--搜索的头部布局-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="180px">
+        android:layout_height="180px"
+        android:background="#fff">
+
         <ImageView
             android:id="@+id/category_seach_img"
-            android:layout_marginBottom="30px"
-            android:layout_marginTop="30px"
-            android:layout_marginLeft="50px"
-            android:layout_marginRight="50px"
             android:layout_width="match_parent"
             android:layout_height="150px"
-            android:background="@drawable/search_back"
-           />
+            android:layout_marginBottom="30px"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="30px"
+            android:background="@drawable/search_back" />
+
         <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="80px"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_search"/>
+            android:src="@mipmap/icon_search" />
+
         <TextView
-            android:textSize="17sp"
-            android:layout_marginLeft="180px"
-            android:layout_centerVertical="true"
-            android:textColor="#A0A0A0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="请输入商品名称"/>
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="180px"
+            android:text="请输入商品名称"
+            android:textColor="#A0A0A0"
+            android:textSize="17sp" />
     </RelativeLayout>
 
     <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <include
-                layout="@layout/category_toplayout"
-                />
+            android:orientation="vertical">
+            <!--上部图片-->
+            <include layout="@layout/category_toplayout" />
+            <!--按功效-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="20px"
+                    android:text="—  按功效  —"
+                    android:textColor="#88000000"
+                    android:textSize="50px" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:gravity="center_horizontal"
+                    android:text="美丽从选对产品开始"
+                    android:textSize="40px" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:orientation="horizontal"
+                    android:padding="20px">
+
+                    <ImageView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@mipmap/classify_hydrating" />
+
+                    <ImageView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_weight="1"
+                        android:src="@mipmap/classify_soothing" />
+
+                    <ImageView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_weight="1"
+                        android:src="@mipmap/classify_control_oil" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_weight="1"
+                        android:src="@mipmap/classify_whitening" />
+
+                    <ImageView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_weight="1"
+                        android:src="@mipmap/classify_firming" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="20px"
+                    android:id="@+id/tv_skin"
+                    android:text="—  按肤质  —"
+                    android:textColor="#88000000"
+                    android:textSize="50px" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:gravity="center_horizontal"
+                    android:text="适合自己的才是最好"
+                    android:textSize="40px" />
+
+
+                    <bw.com.yunifangstore.view.MyGridView
+                        android:layout_marginTop="40px"
+                        android:numColumns="2"
+                        android:padding="20px"
+                        android:verticalSpacing="30px"
+                        android:horizontalSpacing="40px"
+                        android:listSelector="#fff"
+                        android:id="@+id/skin_MyGridView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+            <include
+                  layout="@layout/category_fragment_star_view"/>
+            <bw.com.yunifangstore.view.MyGridView
+                android:id="@+id/category_last_gridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:horizontalSpacing="1px"
+                android:numColumns="2"
+                android:scrollbars="none"
+                android:verticalSpacing="1px" />
+
+            <TextView
+                android:id="@+id/query_goods"
+                android:layout_width="match_parent"
+                android:layout_height="130px"
+                android:gravity="center"
+                android:text="查看所有商品"
+                android:textColor="#55000000"
+                android:textSize="45px" />
         </LinearLayout>
 
     </ScrollView>

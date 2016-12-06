@@ -7,12 +7,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultHeader;
@@ -33,6 +33,7 @@ import bw.com.yunifangstore.adapter.ViewHolder;
 import bw.com.yunifangstore.base.BaseData;
 import bw.com.yunifangstore.base.BaseFragment;
 import bw.com.yunifangstore.bean.RoolData;
+import bw.com.yunifangstore.intent.IntentWebActivity;
 import bw.com.yunifangstore.interfaceclass.OnPageClickListener;
 import bw.com.yunifangstore.utils.URLUtils;
 import bw.com.yunifangstore.view.MyGridView;
@@ -61,6 +62,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     private View queryGoods;
     private RelativeLayout benWork_rlayout;
     private View view;
+    private List<RoolData.DataBean.Ad1Bean> ad1List;
 
     @Override
     public void onLoad() {
@@ -98,7 +100,6 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
                 helper.setText(R.id.last_gv_oldprice, "￥" + item.getMarket_price());
                 helper.setText(R.id.last_gv_newprice, "￥" + item.getShop_price());
                 helper.setText(R.id.last_tvdes, item.getGoods_name());
-
             }
         };
         lastGridView.setAdapter(commonAdapter);
@@ -131,12 +132,18 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             }
         };
         ad5_gridView.setAdapter(commonAdapter);
+        ad5_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                IntentWebActivity.intentWebActivity(getActivity(), ad5List.get(position).getAd_type_dynamic_data());
+
+            }
+        });
+
     }
 
     private void setRecyclerViewData() {
         if (roolData.getData().getBestSellers() == null) {
-//            recyclerView.setVisibility(View.GONE);
-//            benWork_rlayout.setVisibility(View.GONE);
             AutoLinearLayout bzrx = (AutoLinearLayout) view.findViewById(R.id.bzrx);
             bzrx.setVisibility(View.GONE);
         } else {
@@ -155,7 +162,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
      */
     private void setRoolViewPager() {
 
-        List<RoolData.DataBean.Ad1Bean> ad1List = roolData.getData().getAd1();
+        ad1List = roolData.getData().getAd1();
         for (int i = 0; i < ad1List.size(); i++) {
             imageUrlList.add(ad1List.get(i).getImage());
         }
@@ -165,7 +172,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     /**
      * 初始化小点
      */
-    private void initDots(List<RoolData.DataBean.Ad1Bean> ad1List) {
+    private void initDots(final List<RoolData.DataBean.Ad1Bean> ad1List) {
         dotList.clear();
         ll_layoutdots.removeAllViews();
         for (int i = 0; i < ad1List.size(); i++) {
@@ -181,12 +188,12 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             ll_layoutdots.addView(imageView, layoutParams);
         }
         /**
-         * 传送数据的方法
+         * 传送数据并相应跳转到webView
          */
         roolViewPager.initData(imageUrlList, dotList, dotArray, new OnPageClickListener() {
             @Override
             public void setOnPage(int position) {
-                Toast.makeText(getActivity(), "跳转" + position, Toast.LENGTH_SHORT).show();
+                IntentWebActivity.intentWebActivity(getActivity(), ad1List.get(position).getAd_type_dynamic_data());
             }
         });
         roolViewPager.setRoolAdapter();
@@ -202,6 +209,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
         ll_layoutdots = (LinearLayout) view.findViewById(R.id.ll_layoutdots);
         activityInfo = (ViewPager) view.findViewById(R.id.activityInfo);
         ad5_gridView = (GridView) view.findViewById(R.id.ad5_gridView);
+
         //SpringView
         benWork_rlayout = (RelativeLayout) view.findViewById(R.id.benWork_rlayout);
         springView = (SpringView) view.findViewById(R.id.springView);
@@ -251,6 +259,8 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     public void onLoadmore() {
 
     }
+
+
 
 
     /**
