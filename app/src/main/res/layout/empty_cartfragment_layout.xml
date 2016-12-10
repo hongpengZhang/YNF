@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:drawablePadding="30px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@mipmap/shopping_trolley_empty"
+        android:text="购物车还是空的哦"
+        android:textSize="40px"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="快去逛逛吧~"
+        android:textSize="40px"
+        />
+    <Button
+        android:id="@+id/bt_guang"
+        android:layout_width="400px"
+        android:layout_height="110px"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/login_but_selector"
+        android:text="逛一逛"
+        android:textColor="@color/colorWrite" />
+</LinearLayout>

@@ -48,7 +48,7 @@ public class LaunchActivity extends AutoLayoutActivity implements View.OnClickLi
             }
             if (msg.what == 1) {
                 t2--;
-                tv_time.setText("跳过" + t2 + "s");
+                tv_time.setText("跳过" +t2+ "s");
                 if (t2 == 0) {
                     handler.removeCallbacksAndMessages(null);
                     IsFirst();
@@ -60,6 +60,7 @@ public class LaunchActivity extends AutoLayoutActivity implements View.OnClickLi
             }
         }
     };
+    private ImageView imageView3;
 
     /**
      * 判断是否第一次
@@ -115,6 +116,7 @@ public class LaunchActivity extends AutoLayoutActivity implements View.OnClickLi
         tv_time.setOnClickListener(this);
         timelayout = (RelativeLayout) findViewById(R.id.time_layout);
         activitylaunch = (ImageView) findViewById(R.id.activity_launch);
+        imageView3 = (ImageView) findViewById(R.id.imageView3);
     }
 
     /**
@@ -122,6 +124,7 @@ public class LaunchActivity extends AutoLayoutActivity implements View.OnClickLi
      */
     public void timelayoutAnim() {
         activitylaunch.setVisibility(View.INVISIBLE);
+        imageView3.setVisibility(View.INVISIBLE);
         timelayout.setVisibility(View.VISIBLE);
         AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
         alphaAnimation.setFillAfter(true);

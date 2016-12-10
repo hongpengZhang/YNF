@@ -30,24 +30,8 @@
         android:text=""
         android:textColor="#77000000"
         android:textSize="45px" />
-
-    <com.zhy.autolayout.AutoFrameLayout
-        android:layout_width="80px"
-        android:layout_height="80px"
-        android:layout_gravity="center">
-
-        <ImageView
-            android:id="@+id/share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/share_selector"
-            />
-
-    </com.zhy.autolayout.AutoFrameLayout>
-
-
-    <com.zhy.autolayout.AutoFrameLayout
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginRight="40px"
         android:layout_width="80px"
         android:layout_height="80px"
         android:layout_gravity="center">
@@ -60,6 +44,25 @@
             android:background="@mipmap/goods_shopping_cart"
             android:visibility="gone" />
 
-    </com.zhy.autolayout.AutoFrameLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_gravity="center"
+        android:layout_marginRight="30px"
+        >
+
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/share_selector"
+            />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
 
 </com.zhy.autolayout.AutoLinearLayout>

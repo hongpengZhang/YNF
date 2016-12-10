@@ -1,5 +1,6 @@
 package bw.com.yunifangstore.fragment;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import bw.com.yunifangstore.R;
+import bw.com.yunifangstore.activity.AllGoodsActivity;
 import bw.com.yunifangstore.adapter.CommonAdapter;
 import bw.com.yunifangstore.adapter.ViewHolder;
 import bw.com.yunifangstore.base.BaseData;
@@ -24,12 +26,13 @@ import bw.com.yunifangstore.view.ShowingPage;
 /**
  * Created by zhiyuan on 16/9/28.
  */
-public class CategoryFragment extends BaseFragment {
+public class CategoryFragment extends BaseFragment implements View.OnClickListener {
     private String data;
     private GridView skin_myGridView;
     private CategoryData categoryData;
     private TextView tv_skinName;
     private MyGridView category_last_gridView;
+    private View query_goods;
 
     @Override
     public void onLoad() {
@@ -89,7 +92,19 @@ public class CategoryFragment extends BaseFragment {
         skin_myGridView = (GridView) view.findViewById(R.id.skin_MyGridView);
         tv_skinName = (TextView) view.findViewById(R.id.tv_skin);
         category_last_gridView = (MyGridView) view.findViewById(R.id.category_last_gridView);
+        query_goods = view.findViewById(R.id.query_goods);
+        query_goods.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.query_goods:
+                Intent intent = new Intent(getActivity(), AllGoodsActivity.class);
+                getActivity().startActivity(intent);
+                break;
+        }
     }
 
     class MyCategoryData extends BaseData {

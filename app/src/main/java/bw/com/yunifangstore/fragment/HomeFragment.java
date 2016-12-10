@@ -63,10 +63,11 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     private RelativeLayout benWork_rlayout;
     private View view;
     private List<RoolData.DataBean.Ad1Bean> ad1List;
+    private MyHomeData myHomeData;
 
     @Override
     public void onLoad() {
-        MyHomeData myHomeData = new MyHomeData();
+        myHomeData = new MyHomeData();
         myHomeData.getData(URLUtils.homeUrl, URLUtils.homeArgs, 0, BaseData.NORMALTIME);
     }
 
@@ -238,7 +239,6 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             //所有商品
             case R.id.query_goods:
                 Intent intent = new Intent(getActivity(), AllGoodsActivity.class);
-                intent.putExtra("", "");
                 getActivity().startActivity(intent);
                 break;
         }
@@ -249,6 +249,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
      */
     @Override
     public void onRefresh() {
+        myHomeData.getData(URLUtils.homeUrl, URLUtils.homeArgs, 0, BaseData.NORMALTIME);
         springView.onFinishFreshAndLoad();
     }
 

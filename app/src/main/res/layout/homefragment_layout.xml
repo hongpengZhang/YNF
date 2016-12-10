@@ -160,7 +160,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30px"
-                    android:background="#44000000"
                     android:horizontalSpacing="1px"
                     android:numColumns="2"
                     android:scrollbars="none"

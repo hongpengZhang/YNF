@@ -6,12 +6,75 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="bw.com.yunifangstore.activity.AllGoodsActivity">
-<bw.com.yunifangstore.view.MyGridView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/all_goods_myGridView"
-    android:numColumns="2"
-    android:verticalSpacing="4px"
-    android:horizontalSpacing="4px"
-    />
+
+    <include layout="@layout/title_setting" />
+
+    <TextView
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#22000000" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/normal_order"
+            android:layout_width="0px"
+            android:layout_height="130px"
+            android:layout_weight="1"
+            android:background="@drawable/goods_redio"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:paddingRight="60px"
+            android:text="默认排序"
+            android:textColor="@drawable/goods_rediocolor" />
+
+        <RadioButton
+            android:id="@+id/asc_order"
+            android:layout_width="0px"
+            android:layout_height="130px"
+            android:layout_weight="1"
+            android:background="@drawable/goods_redio"
+            android:button="@null"
+            android:drawableRight="@mipmap/good_list_arrows_above"
+            android:gravity="center"
+            android:paddingRight="60px"
+            android:text="价格升序"
+            android:textColor="@drawable/goods_rediocolor"
+
+            />
+
+        <RadioButton
+            android:id="@+id/desc_order"
+            android:layout_width="0px"
+            android:layout_height="130px"
+            android:layout_weight="1"
+            android:background="@drawable/goods_redio"
+            android:button="@null"
+            android:drawableRight="@mipmap/good_list_arrows_below"
+            android:gravity="center"
+            android:paddingRight="60px"
+            android:text="价格降序"
+            android:textColor="@drawable/goods_rediocolor" />
+    </RadioGroup>
+
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/goods_SpringView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/allgoods_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.liaoinstan.springview.widget.SpringView>
+
 </LinearLayout>

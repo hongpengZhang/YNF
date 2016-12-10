@@ -3,7 +3,6 @@ package bw.com.yunifangstore.activity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -39,7 +38,6 @@ public class SubJectActivity extends AutoLayoutActivity implements View.OnClickL
         String title = intent.getStringExtra("title");
         String detail = intent.getStringExtra("detail");
         sub_tv_title.setText("#" + title + "#");
-        Log.i("====标题=========", "convert: "+ title);
         tv_datail.setText(detail);
         list = (List<RoolData.DataBean.SubjectsBean.GoodsListBean>) intent.getSerializableExtra("list");
         initData();
