@@ -24,6 +24,7 @@ import java.util.List;
 
 import bw.com.yunifangstore.R;
 import bw.com.yunifangstore.activity.AllGoodsActivity;
+import bw.com.yunifangstore.activity.DetailsActivity;
 import bw.com.yunifangstore.adapter.ActivityInfoAdapter;
 import bw.com.yunifangstore.adapter.CommonAdapter;
 import bw.com.yunifangstore.adapter.MyCommonAdapter;
@@ -90,7 +91,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     }
 
     private void setMyGridViewData() {
-        List<RoolData.DataBean.DefaultGoodsListBean> defaultGoodsList = roolData.getData().getDefaultGoodsList();
+        final List<RoolData.DataBean.DefaultGoodsListBean> defaultGoodsList = roolData.getData().getDefaultGoodsList();
         CommonAdapter<RoolData.DataBean.DefaultGoodsListBean> commonAdapter = new CommonAdapter<RoolData.DataBean.DefaultGoodsListBean>(getActivity(), defaultGoodsList, R.layout.last_mygridview_item) {
             @Override
             public void convert(ViewHolder helper, RoolData.DataBean.DefaultGoodsListBean item) {
@@ -104,6 +105,14 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             }
         };
         lastGridView.setAdapter(commonAdapter);
+        lastGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                intent.putExtra("id", defaultGoodsList.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void setMyListViewData() {
@@ -260,8 +269,6 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     public void onLoadmore() {
 
     }
-
-
 
 
     /**

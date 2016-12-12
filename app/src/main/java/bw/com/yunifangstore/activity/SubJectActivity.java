@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -59,6 +60,15 @@ public class SubJectActivity extends AutoLayoutActivity implements View.OnClickL
             }
         };
         sub_gridView.setAdapter(commonAdapter);
+        sub_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent=new Intent(SubJectActivity.this,DetailsActivity.class);
+                intent.putExtra("id",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {

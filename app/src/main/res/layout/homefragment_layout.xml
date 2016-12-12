@@ -38,7 +38,7 @@
                     <bw.com.yunifangstore.view.RoolViewPager
                         android:id="@+id/roolViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="450px" />
+                        android:layout_height="600px" />
 
                     <com.zhy.autolayout.AutoLinearLayout
                         android:id="@+id/ll_layoutdots"

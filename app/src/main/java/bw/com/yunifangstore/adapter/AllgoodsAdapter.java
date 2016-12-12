@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import bw.com.yunifangstore.R;
 import bw.com.yunifangstore.bean.QueryGoods;
+import bw.com.yunifangstore.interfaceclass.OnItemClickListener;
 import bw.com.yunifangstore.utils.CommonUtils;
 import bw.com.yunifangstore.utils.ImageLoaderUtils;
 
@@ -24,25 +25,40 @@ import bw.com.yunifangstore.utils.ImageLoaderUtils;
  */
 public class AllgoodsAdapter extends RecyclerView.Adapter<AllgoodsAdapter.MyViewHolder> {
     private final DisplayImageOptions options;
-    private  ArrayList<QueryGoods.DataBean> list;
+    private ArrayList<QueryGoods.DataBean> list;
     private Context context;
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
 
     public AllgoodsAdapter(ArrayList<QueryGoods.DataBean> list, Context context) {
         this.list = list;
         this.context = context;
-      options = ImageLoaderUtils.initOptions();
+        options = ImageLoaderUtils.initOptions();
     }
 
     @Override
     public AllgoodsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View view = CommonUtils.inflate(R.layout.last_mygridview_item);
-        MyViewHolder myViewHolder=new MyViewHolder(view);
+        MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(AllgoodsAdapter.MyViewHolder holder, int position) {
-        ImageLoader.getInstance().displayImage(list.get(position).getGoods_img(),holder.lastgv_img,options );
+    public void onBindViewHolder(final AllgoodsAdapter.MyViewHolder holder, int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int layoutPosition = holder.getLayoutPosition();
+                onItemClickListener.setOnItemClickListener(layoutPosition);
+            }
+        });
+        ImageLoader.getInstance().displayImage(list.get(position).getGoods_img(), holder.lastgv_img, options);
         holder.last_gv_oldprice.setText("￥" + list.get(position).getMarket_price());
         holder.last_gv_newprice.setText("￥" + list.get(position).getShop_price());
         holder.last_tvdes.setText(list.get(position).getGoods_name());
@@ -62,10 +78,11 @@ public class AllgoodsAdapter extends RecyclerView.Adapter<AllgoodsAdapter.MyView
         private final TextView last_gv_oldprice;
         private final TextView last_gv_newprice;
         private final TextView last_tvdes;
+        private View itemView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
+            this.itemView = itemView;
             lastgv_img = (ImageView) itemView.findViewById(R.id.lastgv_img);
             last_gv_name = (TextView) itemView.findViewById(R.id.last_gv_name);
             last_gv_oldprice = (TextView) itemView.findViewById(R.id.last_gv_oldprice);

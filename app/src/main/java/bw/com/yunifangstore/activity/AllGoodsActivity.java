@@ -1,5 +1,6 @@
 package bw.com.yunifangstore.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultHeader;
@@ -23,6 +25,7 @@ import bw.com.yunifangstore.R;
 import bw.com.yunifangstore.adapter.AllgoodsAdapter;
 import bw.com.yunifangstore.base.BaseData;
 import bw.com.yunifangstore.bean.QueryGoods;
+import bw.com.yunifangstore.interfaceclass.OnItemClickListener;
 import bw.com.yunifangstore.utils.URLUtils;
 import bw.com.yunifangstore.view.ShowingPage;
 
@@ -41,9 +44,27 @@ public class AllGoodsActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_all_goods);
         initView();
         requestData();
+        setAdapter();
+    }
+
+    /**
+     * 添加适配器
+     */
+    private void setAdapter() {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         allgoodsAdapter = new AllgoodsAdapter(list, this);
         recyclerView.setAdapter(allgoodsAdapter);
+        allgoodsAdapter.setOnItemClickListener(new OnItemClickListener() {
+            //单击跳转到详情
+            @Override
+            public void setOnItemClickListener(int potision) {
+                String id = list.get(potision).getId();
+                Intent intent=new Intent(AllGoodsActivity.this,DetailsActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+
+        });
     }
 
     /**
@@ -82,7 +103,7 @@ public class AllGoodsActivity extends AppCompatActivity implements View.OnClickL
 
             @Override
             protected void setResulttError(ShowingPage.StateType stateLoadError) {
-
+                Toast.makeText(AllGoodsActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
             }
         };
         baseData.getData(URLUtils.AllGoodsUrl, URLUtils.AllGoodsArgs, 0, BaseData.NORMALTIME);

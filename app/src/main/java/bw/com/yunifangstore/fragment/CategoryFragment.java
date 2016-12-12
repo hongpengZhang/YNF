@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import bw.com.yunifangstore.R;
 import bw.com.yunifangstore.activity.AllGoodsActivity;
+import bw.com.yunifangstore.activity.DetailsActivity;
 import bw.com.yunifangstore.adapter.CommonAdapter;
 import bw.com.yunifangstore.adapter.ViewHolder;
 import bw.com.yunifangstore.base.BaseData;
@@ -33,6 +36,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     private TextView tv_skinName;
     private MyGridView category_last_gridView;
     private View query_goods;
+    private ImageView category_two_img1;
 
     @Override
     public void onLoad() {
@@ -52,7 +56,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void setStarData() {
-        List<CategoryData.DataBean.GoodsBriefBean> goodsBriefList = categoryData.getData().getGoodsBrief();
+        final List<CategoryData.DataBean.GoodsBriefBean> goodsBriefList = categoryData.getData().getGoodsBrief();
         CommonAdapter<CategoryData.DataBean.GoodsBriefBean> commonAdapter = new CommonAdapter<CategoryData.DataBean.GoodsBriefBean>(getActivity(), goodsBriefList, R.layout.last_mygridview_item) {
             @Override
             public void convert(ViewHolder helper, CategoryData.DataBean.GoodsBriefBean item) {
@@ -67,6 +71,16 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
             }
         };
         category_last_gridView.setAdapter(commonAdapter);
+        category_last_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent=new Intent(getActivity(),DetailsActivity.class);
+                intent.putExtra("id",goodsBriefList.get(position).getId());
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void setSkinGridViewData() {
@@ -94,6 +108,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         category_last_gridView = (MyGridView) view.findViewById(R.id.category_last_gridView);
         query_goods = view.findViewById(R.id.query_goods);
         query_goods.setOnClickListener(this);
+        category_two_img1 = (ImageView) view.findViewById(R.id.category_two_img1);
         return view;
     }
 

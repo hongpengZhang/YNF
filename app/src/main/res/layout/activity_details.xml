@@ -27,13 +27,9 @@
             android:orientation="vertical">
             <!--viewPage大图-->
             <RelativeLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/large_ViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="100px" />
 
                 <LinearLayout
                     android:id="@+id/goods_dot"
@@ -42,6 +38,14 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:orientation="horizontal" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/large_ViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="1100px"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
             </RelativeLayout>
 
@@ -67,7 +71,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20px"
                             android:lines="2"
-                            android:text="你ddddddddddddddddddddd"
+                            android:text=""
                             android:textColor="#000"
                             android:textSize="17sp" />
 
@@ -245,7 +249,7 @@
                 android:id="@+id/myRecycleView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#f00" />
+               />
 
         </LinearLayout>
 

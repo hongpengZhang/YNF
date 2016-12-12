@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -23,12 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bw.com.yunifangstore.R;
+import bw.com.yunifangstore.adapter.AttributesAdapter;
+import bw.com.yunifangstore.adapter.CommentsAdapter;
 import bw.com.yunifangstore.adapter.DetailsPicAdapter;
 import bw.com.yunifangstore.adapter.MyLargeAdapter;
 import bw.com.yunifangstore.base.BaseData;
 import bw.com.yunifangstore.bean.DetailsData;
 import bw.com.yunifangstore.bean.LargePictureData;
 import bw.com.yunifangstore.utils.URLUtils;
+import bw.com.yunifangstore.view.FullyLinearLayoutManager;
 import bw.com.yunifangstore.view.ShowingPage;
 
 public class DetailsActivity extends AutoLayoutActivity implements View.OnClickListener {
@@ -88,8 +89,9 @@ public class DetailsActivity extends AutoLayoutActivity implements View.OnClickL
                 //赋值
                 setData();
                 addLargePicture();
-                //产品信息
+                //产品详情
                 largePictureDatas = gson.fromJson(goods.getGoods_desc(), LargePictureData[].class);
+
                 setDetailData();
             }
 
@@ -212,7 +214,7 @@ public class DetailsActivity extends AutoLayoutActivity implements View.OnClickL
             radioGroup.getChildAt(i).setOnClickListener(this);
         }
         myRecycleView = (RecyclerView) findViewById(R.id.myRecycleView);
-
+        myRecycleView.setMinimumHeight(1000);
     }
 
     /**
@@ -245,25 +247,44 @@ public class DetailsActivity extends AutoLayoutActivity implements View.OnClickL
                 break;
             //产品详情
             case R.id.goods_goods_tv:
-                Toast.makeText(this, "ccccc", Toast.LENGTH_SHORT).show();
                 setDetailData();
                 break;
             //评论
             case R.id.goods_comment_tv:
-                Toast.makeText(this, "aaaaa", Toast.LENGTH_SHORT).show();
+                setCommentsData();
                 break;
             //产品参数
             case R.id.goods_parameter_tv:
-                Toast.makeText(this, "bbbb", Toast.LENGTH_SHORT).show();
+                setAttributesData();
                 break;
 
         }
     }
 
+    private void setCommentsData() {
+        List<DetailsData.DataBean.CommentsBean> commentsList = detailsData.getData().getComments();
+        myRecycleView.setNestedScrollingEnabled(false);
+        FullyLinearLayoutManager linearLayoutManager = new FullyLinearLayoutManager(this);
+        myRecycleView.setLayoutManager(linearLayoutManager);
+        myRecycleView.setAdapter(new CommentsAdapter(commentsList, DetailsActivity.this));
+
+    }
+
+    private void setAttributesData() {
+        List<DetailsData.DataBean.GoodsBean.AttributesBean> attributes = goods.getAttributes();
+        myRecycleView.setNestedScrollingEnabled(false);
+        FullyLinearLayoutManager linearLayoutManager = new FullyLinearLayoutManager(this);
+        myRecycleView.setLayoutManager(linearLayoutManager);
+        myRecycleView.setAdapter(new AttributesAdapter(attributes, DetailsActivity.this));
+    }
+
     private void setDetailData() {
-        Log.i(TAG, "setDetailData: --------------------"+largePictureDatas.length);
-        myRecycleView.setLayoutManager(new LinearLayoutManager(DetailsActivity.this));
-        DetailsPicAdapter detailsPicAdapter=new DetailsPicAdapter(largePictureDatas,DetailsActivity.this);
+        FullyLinearLayoutManager linearLayoutManager = new FullyLinearLayoutManager(this);
+        myRecycleView.setNestedScrollingEnabled(false);
+        //设置布局管理器
+        myRecycleView.setLayoutManager(linearLayoutManager);
+//        myRecycleView.setLayoutManager(new LinearLayoutManager(DetailsActivity.this));
+        DetailsPicAdapter detailsPicAdapter = new DetailsPicAdapter(largePictureDatas, DetailsActivity.this);
         myRecycleView.setAdapter(detailsPicAdapter);
     }
 }

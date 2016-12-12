@@ -1,7 +1,6 @@
 package bw.com.yunifangstore.holder;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -9,7 +8,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import bw.com.yunifangstore.R;
 import bw.com.yunifangstore.base.BaseHolder;
-import bw.com.yunifangstore.utils.ImageLoaderUtils;
 
 /**
  * @author : 张鸿鹏
@@ -27,7 +25,7 @@ public class DeailViewHolder extends BaseHolder<String> {
 
     @Override
     public void setData(Context context,String picUri) {
-        Log.i("========", "setData: "+picUri);
-        ImageLoader.getInstance().displayImage(picUri,detailpic_iv, ImageLoaderUtils.initOptions());
+        ImageLoader.getInstance().displayImage(picUri,detailpic_iv);
+
     }
 }

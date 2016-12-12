@@ -28,6 +28,8 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
         this.mItemLayoutId = itemLayoutId;
     }
 
+
+
     @Override
     public int getCount()
     {

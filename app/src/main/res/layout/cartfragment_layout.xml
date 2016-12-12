@@ -6,5 +6,8 @@
 
     <include layout="@layout/title_setting" />
 
-    <include layout="@layout/empty_cartfragment_layout" />
+    <include
+        android:id="@+id/empty_cartfragment"
+        layout="@layout/empty_cartfragment_layout" />
+
 </LinearLayout>

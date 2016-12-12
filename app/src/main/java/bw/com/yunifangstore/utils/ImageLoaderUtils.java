@@ -35,7 +35,7 @@ public class ImageLoaderUtils {
                 .diskCacheExtraOptions(480, 800, null)
                 // .taskExecutor(null)
                 // .taskExecutorForCachedImages()
-                .threadPoolSize(3)
+                .threadPoolSize(5)
                 // default 线程优先级
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 // default
@@ -73,9 +73,9 @@ public class ImageLoaderUtils {
     public static DisplayImageOptions initCircleOptions() {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 // 设置图片在下载期间显示的图片
-                .showImageOnLoading(R.mipmap.coupon_unuse_bottle)
+                .showImageOnLoading(R.mipmap.user_icon_no_set)
                 // 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.mipmap.coupon_unuse_bottle)
+                .showImageOnFail(R.mipmap.user_icon_no_set)
                 // 设置下载的图片是否缓存在内存中
                 .cacheInMemory(true)
                 // 设置下载的图片是否缓存在SD卡中
