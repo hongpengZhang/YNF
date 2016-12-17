@@ -35,7 +35,7 @@ public class ImageLoaderUtils {
                 .diskCacheExtraOptions(480, 800, null)
                 // .taskExecutor(null)
                 // .taskExecutorForCachedImages()
-                .threadPoolSize(5)
+                .threadPoolSize(3)
                 // default 线程优先级
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 // default
@@ -44,12 +44,12 @@ public class ImageLoaderUtils {
                 // 加载同一URL图片时,imageView从小变大时,从内存缓存中加载
                 .denyCacheImageMultipleSizesInMemory()
                 // 超过设定的缓存大小时,内存缓存的清除机制
-                .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+                .memoryCache(new LruMemoryCache(100 * 1024 * 1024))
                 // 内存的一个大小
-                .memoryCacheSize(2 * 1024 * 1024).memoryCacheSizePercentage(13)
+                .memoryCacheSize(1000 * 1024 * 1024).memoryCacheSizePercentage(13)
                 // default 将图片信息缓存到该路径下
                 // default 磁盘缓存的大小
-                .diskCacheSize(50 * 1024 * 1024)
+                .diskCacheSize(800 * 1024 * 1024)
                 // 磁盘缓存文件的个数
                 .diskCacheFileCount(100)
                 // 磁盘缓存的文件名的命名方式//一般使用默认值 (获取文件名称的hashcode然后转换成字符串)或MD5 new
@@ -58,15 +58,16 @@ public class ImageLoaderUtils {
                 // 设置默认的图片加载
                 // 使用默认的图片解析器
                 .imageDecoder(new BaseImageDecoder(true)) // default
-                .defaultDisplayImageOptions(DisplayImageOptions.createSimple())
-                .writeDebugLogs();
+                .defaultDisplayImageOptions(DisplayImageOptions.createSimple());
+//                .writeDebugLogs();
 
 //---------------------------------------------------------------------
         ImageLoader.getInstance().init(configuration.build());
     }
 
     /**
-     *处理圆形图片的方法
+     * 处理圆形图片的方法
+     *
      * @param
      * @return
      */
@@ -77,7 +78,7 @@ public class ImageLoaderUtils {
                 // 设置图片Uri为空或是错误的时候显示的图片
                 .showImageOnFail(R.mipmap.user_icon_no_set)
                 // 设置下载的图片是否缓存在内存中
-                .cacheInMemory(true)
+//                .cacheInMemory(true)
                 // 设置下载的图片是否缓存在SD卡中
                 .cacheOnDisc(true)
 
@@ -87,7 +88,7 @@ public class ImageLoaderUtils {
                 // 是否考虑JPEG图像EXIF参数（旋转，翻转）
                 .considerExifParams(true)
                 // 设置图片以如何的编码方式显示
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
                 // 设置图片的解码类型//
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 // 设置图片的解码配置
@@ -99,7 +100,7 @@ public class ImageLoaderUtils {
                 // 设置图片在下载前是否重置，复位
                 .resetViewBeforeLoading(true)
                 // 是否设置为圆角，弧度为多少
-                .displayer(new CircleBitmapDisplayer())
+                .displayer(new CircleBitmapDisplayer(300))
                 // 是否图片加载好后渐入的动画时间
 //                .displayer(new FadeInBitmapDisplayer(100))
                 // 构建完成
@@ -107,8 +108,10 @@ public class ImageLoaderUtils {
                 .build();
         return options;
     }
+
     public static DisplayImageOptions initOptions() {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
+
                 // 设置图片在下载期间显示的图片
                 .showImageOnLoading(R.mipmap.coupon_unuse_bottle)
                 // 设置图片Uri为空或是错误的时候显示的图片
@@ -117,12 +120,13 @@ public class ImageLoaderUtils {
                 .cacheInMemory(true)
                 // 设置下载的图片是否缓存在SD卡中
                 .cacheOnDisc(true)
+
 //--------------------------------------------------------------------
 //如果您只想简单使用ImageLoader这块也可以不用配置
                 // 是否考虑JPEG图像EXIF参数（旋转，翻转）
                 .considerExifParams(true)
                 // 设置图片以如何的编码方式显示
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
                 // 设置图片的解码类型//
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 // 设置图片的解码配置
@@ -142,4 +146,5 @@ public class ImageLoaderUtils {
                 .build();
         return options;
     }
+
 }

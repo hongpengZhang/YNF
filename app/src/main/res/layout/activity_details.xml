@@ -19,17 +19,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:fillViewport="true"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <!--viewPage大图-->
             <RelativeLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/large_ViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="1100px"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true" />
 
                 <LinearLayout
                     android:id="@+id/goods_dot"
@@ -38,14 +47,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:orientation="horizontal" />
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/large_ViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="1100px"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
 
             </RelativeLayout>
 
@@ -203,96 +204,68 @@
                 android:layout_height="30px"
                 android:background="#F9F9F9" />
 
-            <TextView
-                android:id="@+id/goods_tv1"
+            <bw.com.yunifangstore.view.MyListView
+                android:scrollbars="none"
+                android:listSelector="#fff"
+                android:id="@+id/item_myListView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30px"
-                android:drawableRight="@mipmap/next_icon"
-                android:text="" />
+                android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="5px"
-                android:background="#F9F9F9" />
-
-            <TextView
-                android:id="@+id/goods_tv2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="30px"
-                android:layout_marginTop="20px"
-                android:drawableRight="@mipmap/next_icon"
-                android:text="" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="5px"
-                android:background="#F9F9F9" />
-
-            <TextView
-                android:id="@+id/goods_tv3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="30px"
-                android:layout_marginTop="20px"
-                android:drawableRight="@mipmap/next_icon"
-                android:text="" />
 
             <include layout="@layout/goods_title" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/myRecycleView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-               />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <bw.com.yunifangstore.view.MyListView
+                    android:scrollbars="none"
+                    android:listSelector="#fff"
+                    android:id="@+id/myListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
 
         </LinearLayout>
 
     </ScrollView>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150px">
 
         <TextView
             android:id="@+id/goods_kefu_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_margin="50px"
+            android:layout_marginLeft="20px"
+            android:layout_weight="2"
             android:drawableLeft="@mipmap/public_contact_service_icon"
-            android:drawablePadding="30px"
-            android:gravity="center"
-            android:text=" 客服"
+            android:drawablePadding="40px"
+            android:gravity="center_vertical"
+            android:text="客服"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/goods_jia_shopping_tv"
+            android:id="@+id/goods_add_shopping_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="240px"
             android:background="#FBD140"
             android:gravity="center"
-            android:paddingLeft="40px"
-            android:paddingRight="40px"
+            android:padding="40px"
             android:text="加入购物车" />
 
         <TextView
             android:id="@+id/goods_buy_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
             android:background="#FC6B87"
             android:gravity="center"
-            android:paddingLeft="40px"
-            android:paddingRight="40px"
+            android:padding="40px"
             android:text="立即购买" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

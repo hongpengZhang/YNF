@@ -35,6 +35,7 @@ import bw.com.yunifangstore.base.BaseData;
 import bw.com.yunifangstore.base.BaseFragment;
 import bw.com.yunifangstore.bean.RoolData;
 import bw.com.yunifangstore.intent.IntentWebActivity;
+import bw.com.yunifangstore.interfaceclass.OnItemClickListener;
 import bw.com.yunifangstore.interfaceclass.OnPageClickListener;
 import bw.com.yunifangstore.utils.URLUtils;
 import bw.com.yunifangstore.view.MyGridView;
@@ -65,6 +66,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
     private View view;
     private List<RoolData.DataBean.Ad1Bean> ad1List;
     private MyHomeData myHomeData;
+    private RecyclerViewAdapter recyclerViewAdapter;
 
     @Override
     public void onLoad() {
@@ -111,6 +113,8 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
                 intent.putExtra("id", defaultGoodsList.get(position).getId());
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.login_in, R.anim.login_in0);
+
             }
         });
     }
@@ -146,12 +150,14 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 IntentWebActivity.intentWebActivity(getActivity(), ad5List.get(position).getAd_type_dynamic_data());
-
             }
         });
 
     }
 
+    /**
+     * 还没做完跳转的界面
+     */
     private void setRecyclerViewData() {
         if (roolData.getData().getBestSellers() == null) {
             AutoLinearLayout bzrx = (AutoLinearLayout) view.findViewById(R.id.bzrx);
@@ -160,10 +166,19 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             recyclerView.setLayoutManager(linearLayoutManager);
-            RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(roolData.getData().getBestSellers().get(0), getActivity());
+            recyclerViewAdapter = new RecyclerViewAdapter(roolData.getData().getBestSellers().get(0), getActivity());
             recyclerView.setAdapter(recyclerViewAdapter);
+            recyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void setOnItemClickListener(int potision) {
+                    String id = roolData.getData().getBestSellers().get(0).getId();
+                   /* Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_in, R.anim.login_in0);*/
+                }
+            });
         }
-
 
     }
 
@@ -204,6 +219,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             @Override
             public void setOnPage(int position) {
                 IntentWebActivity.intentWebActivity(getActivity(), ad1List.get(position).getAd_type_dynamic_data());
+
             }
         });
         roolViewPager.setRoolAdapter();
@@ -214,6 +230,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
      */
     @NonNull
     private View initView() {
+
         View view = View.inflate(getActivity(), R.layout.homefragment_layout, null);
         roolViewPager = (RoolViewPager) view.findViewById(R.id.roolViewPager);
         ll_layoutdots = (LinearLayout) view.findViewById(R.id.ll_layoutdots);
@@ -249,6 +266,7 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             case R.id.query_goods:
                 Intent intent = new Intent(getActivity(), AllGoodsActivity.class);
                 getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.login_in, R.anim.login_in0);
                 break;
         }
     }

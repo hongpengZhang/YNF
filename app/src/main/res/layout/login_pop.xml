@@ -31,6 +31,7 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/iv_qq"
             android:layout_marginLeft="80px"
             android:layout_width="150px"
             android:layout_height="150px"

@@ -87,6 +87,7 @@ public class WebActivity extends AutoLayoutActivity implements View.OnClickListe
                 webView.goBack();
             } else {
                 finish();
+                overridePendingTransition(R.anim.login_in0, R.anim.login_out);
             }
         }
 
@@ -110,6 +111,7 @@ public class WebActivity extends AutoLayoutActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.iv_title_back:
                 finish();
+                overridePendingTransition(R.anim.login_in0, R.anim.login_out);
                 break;
             case R.id.share:
                 Toast.makeText(this, "分享", Toast.LENGTH_SHORT).show();

@@ -8,13 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import bw.com.yunifangstore.R;
 import bw.com.yunifangstore.bean.RoolData;
+import bw.com.yunifangstore.interfaceclass.OnItemClickListener;
 import bw.com.yunifangstore.utils.ImageLoaderUtils;
+
+import static bw.com.yunifangstore.R.layout.recycle_item;
 
 /**
  * @author : 张鸿鹏
@@ -24,6 +28,14 @@ import bw.com.yunifangstore.utils.ImageLoaderUtils;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private RoolData.DataBean.BestSellersBean bestSellersBean;
     private Context context;
+
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
 
     public RecyclerViewAdapter(RoolData.DataBean.BestSellersBean bestSellersBean, Context context) {
         this.bestSellersBean = bestSellersBean;
@@ -35,7 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycle_item, null, false);
+        View view = LayoutInflater.from(context).inflate(recycle_item, null, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -44,17 +56,36 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      * 绑定数据
      */
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        String goods_name = bestSellersBean.getGoodsList().get(i).getGoods_name();
-        if (goods_name.length() > 14) {
-            viewHolder.selling_rv_item_des.setText(goods_name.substring(0,14) + "...");
+    public void onBindViewHolder(ViewHolder viewHolder, final int i) {
+        if (i == 6) {
+            ImageView imageView = new ImageView(context);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setImageResource(R.mipmap.weibu);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "饿呢", Toast.LENGTH_SHORT).show();
+                }
+            });
         } else {
-            viewHolder.selling_rv_item_des.setText(goods_name);
-        }
-        viewHolder.selling_rv_item_newprice.setText("￥" + bestSellersBean.getGoodsList().get(i).getShop_price());
-        viewHolder.selling_rv_item_oldprice.setText("￥" + bestSellersBean.getGoodsList().get(i).getMarket_price());
-        viewHolder.selling_rv_item_oldprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        ImageLoader.getInstance().displayImage(bestSellersBean.getGoodsList().get(i).getGoods_img(), viewHolder.selling_rv_item_img, ImageLoaderUtils.initOptions());
+            String goods_name = bestSellersBean.getGoodsList().get(i).getGoods_name();
+            if (goods_name.length() > 14) {
+                viewHolder.selling_rv_item_des.setText(goods_name.substring(0, 14) + "...");
+            } else {
+                viewHolder.selling_rv_item_des.setText(goods_name);
+            }
+            viewHolder.selling_rv_item_newprice.setText("￥" + bestSellersBean.getGoodsList().get(i).getShop_price());
+            viewHolder.selling_rv_item_oldprice.setText("￥" + bestSellersBean.getGoodsList().get(i).getMarket_price());
+            viewHolder.selling_rv_item_oldprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            ImageLoader.getInstance().displayImage(bestSellersBean.getGoodsList().get(i).getGoods_img(), viewHolder.selling_rv_item_img, ImageLoaderUtils.initOptions());
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.setOnItemClickListener(i);
+                }
+            });
+       }
+
     }
 
     /**
@@ -62,7 +93,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      */
     @Override
     public int getItemCount() {
-        return bestSellersBean.getGoodsList().size();
+        return 7;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,9 +102,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private final TextView selling_rv_item_newprice;
         private final TextView selling_rv_item_oldprice;
         private final TextView selling_rv_item_des;
+        private View itemView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             AutoUtils.autoSize(itemView);
             selling_rv_item_img = (ImageView) itemView.findViewById(R.id.selling_rv_item_img);
             selling_rv_item_newprice = (TextView) itemView.findViewById(R.id.selling_rv_item_newprice);

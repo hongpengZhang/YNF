@@ -1,5 +1,6 @@
 package bw.com.yunifangstore.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -14,9 +15,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import bw.com.yunifangstore.R;
-import bw.com.yunifangstore.activity.DetailsActivity;
 import bw.com.yunifangstore.activity.SubJectActivity;
 import bw.com.yunifangstore.bean.RoolData;
+import bw.com.yunifangstore.intent.IntentDetailActivity;
 import bw.com.yunifangstore.utils.CommonUtils;
 import bw.com.yunifangstore.utils.ImageLoaderUtils;
 
@@ -24,7 +25,7 @@ import bw.com.yunifangstore.utils.ImageLoaderUtils;
  * @author : 张鸿鹏
  * @date : 2016/12/4.
  */
-public class MyCommonAdapter extends CommonAdapter<RoolData.DataBean.SubjectsBean>  {
+public class MyCommonAdapter extends CommonAdapter<RoolData.DataBean.SubjectsBean> {
     private final List<RoolData.DataBean.SubjectsBean> subjectsList;
     private final Context context;
     private int position;
@@ -57,10 +58,12 @@ public class MyCommonAdapter extends CommonAdapter<RoolData.DataBean.SubjectsBea
 
     private void jumpSubJect(int position) {
         Intent intent = new Intent(context, SubJectActivity.class);
-        intent.putExtra("title",subjectsList.get(position).getTitle());
-        intent.putExtra("detail",subjectsList.get(position).getDetail());
+        intent.putExtra("title", subjectsList.get(position).getTitle());
+        intent.putExtra("detail", subjectsList.get(position).getDetail());
         intent.putExtra("list", (Serializable) subjectsList.get(position).getGoodsList());
         context.startActivity(intent);
+        ((Activity) context).overridePendingTransition(R.anim.login_in, R.anim.login_in0);
+
     }
 
     private void addLlt_Layout(final int position, final LinearLayout hot_llt_layout) {
@@ -71,9 +74,8 @@ public class MyCommonAdapter extends CommonAdapter<RoolData.DataBean.SubjectsBea
             inflate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context, DetailsActivity.class);
-                    intent.putExtra("id",subjectsList.get(position).getGoodsList().get(v.getId()).getId());
-                    context.startActivity(intent);
+
+                    IntentDetailActivity.intentDetailActivity(context,subjectsList.get(position).getGoodsList().get(v.getId()).getId());
                 }
             });
             ImageView selling_rv_item_img = (ImageView) inflate.findViewById(R.id.selling_rv_item_img);

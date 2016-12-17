@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Process;
 
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 import com.zhy.autolayout.config.AutoLayoutConifg;
 
 import org.xutils.x;
@@ -39,6 +41,9 @@ public class MyApplication extends Application {
         x.Ext.setDebug(true);
         //屏幕适配
         AutoLayoutConifg.getInstance().useDeviceSize();
+        //qq登录
+        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+        UMShareAPI.get(this);
     }
 
     /**

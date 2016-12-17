@@ -67,6 +67,8 @@ public class SubJectActivity extends AutoLayoutActivity implements View.OnClickL
                 Intent intent=new Intent(SubJectActivity.this,DetailsActivity.class);
                 intent.putExtra("id",list.get(position).getId());
                 startActivity(intent);
+                overridePendingTransition(R.anim.login_in, R.anim.login_in0);
+
             }
         });
     }
@@ -87,6 +89,8 @@ public class SubJectActivity extends AutoLayoutActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.but_title_left_image:
                 finish();
+                overridePendingTransition(R.anim.login_in0, R.anim.login_out);
+
                 break;
         }
     }

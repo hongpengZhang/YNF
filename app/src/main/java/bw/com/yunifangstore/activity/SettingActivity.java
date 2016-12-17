@@ -13,6 +13,7 @@ import com.zhy.autolayout.AutoLayoutActivity;
 import java.io.File;
 
 import bw.com.yunifangstore.R;
+import bw.com.yunifangstore.utils.DataClearManager;
 
 public class SettingActivity extends AutoLayoutActivity implements View.OnClickListener {
 
@@ -36,8 +37,14 @@ public class SettingActivity extends AutoLayoutActivity implements View.OnClickL
         clearCache_llt.setOnClickListener(this);
         tv_clearCache = (TextView) findViewById(R.id.tv_clearCache);
         cacheDir = getCacheDir();
-        long cacheSize = getCacheSize(cacheDir);
-        tv_clearCache.setText("已缓存" + cacheSize);
+       /* long cacheSize = getCacheSize(cacheDir);
+        tv_clearCache.setText("已缓存" + cacheSize);*/
+        try {
+            String cacheSize1 = DataClearManager.getCacheSize(cacheDir);
+            tv_clearCache.setText("已缓存" + cacheSize1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -45,6 +52,7 @@ public class SettingActivity extends AutoLayoutActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.but_title_left_image:
                 finish();
+                overridePendingTransition(R.anim.login_in0, R.anim.login_out);
                 break;
             case R.id.clearCache_llt:
                 // 清除缓存

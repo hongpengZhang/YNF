@@ -1,5 +1,6 @@
 package bw.com.yunifangstore.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -81,7 +82,7 @@ public class CategoryData {
             this.goodsBrief = goodsBrief;
         }
 
-        public static class CategoryBean {
+        public static class CategoryBean implements Serializable{
             private String id;
             private String cat_name;
             private String is_leaf;
@@ -125,7 +126,7 @@ public class CategoryData {
                 this.children = children;
             }
 
-            public static class ChildrenBean {
+            public static class ChildrenBean implements Serializable{
                 private String id;
                 private String cat_name;
                 private String is_leaf;

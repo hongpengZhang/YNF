@@ -8,16 +8,17 @@ public class URLUtils {
     public static final String homeUrl = "http://m.yunifang.com/yunifang/mobile/home?";
     public static final String homeArgs = "random=59676&encode=62d458fefce9c740359873cc19b05188";
     //分类
-    public static final String categoryUrl="http://m.yunifang.com/yunifang/mobile/category/list?";
-    public static final String categoryArgs="random=60729&encode=d5f7520dad446ad974110b1b2cb499c8";
-    //所有商品
-    public static final String AllGoodsUrl="http://m.yunifang.com/yunifang/mobile/goods/getall?";
-    public static final String AllGoodsArgs="random=87749&encode=ac6bd45b8f50b626a6843b294af8fed5";
-    //    商品详情（id）
-    public static final String DetailGoodsUrl="http://m.yunifang.com/yunifang/mobile/goods/detail?random=6716&encode=b02382bd9e457e06e09b68a6a4f26eb4&id=";
-//    商品分类（category_id值从分类里获取）
-//    http://m.yunifang.com/yunifang/mobile/goods/getall?random=92414&encode=33984fb43bc319ca16f9b7efb4baf895&category_id=
+    public static final String categoryUrl = "http://m.yunifang.com/yunifang/mobile/category/list?";
+    public static final String categoryArgs = "random=60729&encode=d5f7520dad446ad974110b1b2cb499c8";
+    //    商品分类（category_id值从分类里获取）
+    public static final String categoryTypeUrl = "http://m.yunifang.com/yunifang/mobile/goods/getall?random=92414&encode=33984fb43bc319ca16f9b7efb4baf895&category_id=";
+    public static final String categoryTypeArg = "";
 
+    //所有商品
+    public static final String AllGoodsUrl = "http://m.yunifang.com/yunifang/mobile/goods/getall?";
+    public static final String AllGoodsArgs = "random=87749&encode=ac6bd45b8f50b626a6843b294af8fed5";
+    //    商品详情（id）
+    public static final String DetailGoodsUrl = "http://m.yunifang.com/yunifang/mobile/goods/detail?random=6716&encode=b02382bd9e457e06e09b68a6a4f26eb4&id=";
 
 
 //    返回数据：json串

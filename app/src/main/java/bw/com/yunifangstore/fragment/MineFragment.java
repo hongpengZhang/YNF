@@ -1,7 +1,6 @@
 package bw.com.yunifangstore.fragment;
 
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -48,11 +47,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             case R.id.login_btn:
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.login_in, R.anim.login_in0);
                 break;
             //设置
             case R.id.settings:
                 Intent intent2 = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent2);
+                getActivity().overridePendingTransition(R.anim.login_in, R.anim.login_in0);
+
                 break;
         }
     }

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:paddingBottom="30px"
+    >
+
+
+    <ImageView
+        android:id="@+id/colse_detailpop"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30px"
+        android:src="@mipmap/order_detail_close_icon" />
+
+    <TextView
+        android:textColor="#000"
+        android:layout_marginTop="10px"
+        android:id="@+id/tv_goods_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llt_layout"
+        android:layout_marginLeft="70px"
+        android:text=" 购买数量" />
+    <LinearLayout
+        android:id="@+id/add_delete_llt"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="140px"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/colse_detailpop"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:background="@drawable/sharp_activity_info"
+            android:id="@+id/shoppingcar_alertSubtra"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@drawable/reduce_selector"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:background="@drawable/sharp_activity_info"
+            android:id="@+id/shoppingcar_alertNum"
+            android:layout_width="120px"
+            android:layout_height="100px"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_gravity="center_vertical"/>
+
+        <ImageButton
+            android:background="@drawable/sharp_activity_info"
+            android:layout_marginRight="20px"
+            android:id="@+id/shoppingcar_alertAdd"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@drawable/add_selector"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+    <Button
+        android:layout_marginTop="110px"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/llt_layout"
+        android:id="@+id/sure_goods"
+        android:layout_width="230px"
+        android:layout_height="100px"
+        android:background="@drawable/login_but_selector"
+        android:text="确定"
+        android:textColor="@color/colorWrite"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:id="@+id/llt_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:background="@drawable/sharp_activity_info"
+            android:layout_gravity="center"
+            android:id="@+id/shoppingcar_alertImage"
+            android:layout_width="240px"
+            android:layout_height="240px"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/coupon_unuse_bottle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/shoppingcar_alertPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+               android:padding="10px"
+                android:text="sss"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_kucun_sum"
+                android:layout_marginTop="10px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="sss"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_marginTop="10px"
+                android:id="@+id/xiangou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="sss"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,6 +1,5 @@
 package bw.com.yunifangstore.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +24,7 @@ import bw.com.yunifangstore.R;
 import bw.com.yunifangstore.adapter.AllgoodsAdapter;
 import bw.com.yunifangstore.base.BaseData;
 import bw.com.yunifangstore.bean.QueryGoods;
+import bw.com.yunifangstore.intent.IntentDetailActivity;
 import bw.com.yunifangstore.interfaceclass.OnItemClickListener;
 import bw.com.yunifangstore.utils.URLUtils;
 import bw.com.yunifangstore.view.ShowingPage;
@@ -59,9 +59,7 @@ public class AllGoodsActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void setOnItemClickListener(int potision) {
                 String id = list.get(potision).getId();
-                Intent intent=new Intent(AllGoodsActivity.this,DetailsActivity.class);
-                intent.putExtra("id",id);
-                startActivity(intent);
+                IntentDetailActivity.intentDetailActivity(AllGoodsActivity.this, id);
             }
 
         });
@@ -98,7 +96,6 @@ public class AllGoodsActivity extends AppCompatActivity implements View.OnClickL
                 List<QueryGoods.DataBean> goodsList = queryGoods.getData();
                 list.clear();
                 list.addAll(goodsList);
-
             }
 
             @Override
@@ -115,6 +112,7 @@ public class AllGoodsActivity extends AppCompatActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.but_title_left_image:
                 finish();
+               overridePendingTransition(R.anim.login_in0, R.anim.login_out);
                 break;
             //正常排序
             case R.id.normal_order:

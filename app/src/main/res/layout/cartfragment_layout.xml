@@ -5,9 +5,72 @@
     android:orientation="vertical">
 
     <include layout="@layout/title_setting" />
-
+<!--空空的购物车-->
     <include
         android:id="@+id/empty_cartfragment"
-        layout="@layout/empty_cartfragment_layout" />
+        layout="@layout/empty_cartfragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/llt_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <bw.com.yunifangstore.view.MyListView
+                android:listSelector="#fff"
+                android:id="@+id/cart_myListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:background="#fff"
+        android:id="@+id/allselecor_goods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20px">
+
+        <CheckBox
+            android:id="@+id/all_selectGoods"
+            android:textColor="#000"
+            android:layout_marginLeft="20px"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:button="@null"
+            android:drawableLeft="@drawable/sopping_check"
+            android:drawablePadding="50px"
+            android:text="全选" />
+
+        <TextView
+            android:id="@+id/cart_sumMoney"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textSize="40px"
+            android:gravity="center"
+            android:text="总计：￥0.00"
+            android:textColor="@color/colorTextMain" />
+
+        <Button
+            android:id="@+id/bt_jiesun"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:background="@color/colorTextMain"
+            android:text="结算"
+            android:textColor="#fff" />
+    </LinearLayout>
 
 </LinearLayout>

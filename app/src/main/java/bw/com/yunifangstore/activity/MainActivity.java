@@ -1,9 +1,11 @@
 package bw.com.yunifangstore.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.Window;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -15,7 +17,8 @@ import bw.com.yunifangstore.view.NoScrollViewPager;
 public class MainActivity extends AutoLayoutActivity {
 
     NoScrollViewPager viewPager;
-    RadioGroup radioGroup;
+    public static RadioGroup radioGroup;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,14 @@ public class MainActivity extends AutoLayoutActivity {
 
         initView();
         setAdapterAndSetPage();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent.getBooleanExtra("cart", false)) {
+            ((RadioButton) radioGroup.getChildAt(2)).setChecked(true);
+        }
     }
 
     /**
@@ -42,6 +53,7 @@ public class MainActivity extends AutoLayoutActivity {
                 return 4;
             }
         });
+        viewPager.setOffscreenPageLimit(3);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {

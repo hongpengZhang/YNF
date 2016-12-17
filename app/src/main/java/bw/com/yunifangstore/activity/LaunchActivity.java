@@ -97,6 +97,8 @@ public class LaunchActivity extends AutoLayoutActivity implements View.OnClickLi
         Intent intent = new Intent(LaunchActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.login_in0, R.anim.login_out);
+
     }
 
     /**

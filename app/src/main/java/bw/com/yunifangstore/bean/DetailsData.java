@@ -1,5 +1,8 @@
 package bw.com.yunifangstore.bean;
 
+import org.xutils.db.annotation.Column;
+import org.xutils.db.annotation.Table;
+
 import java.util.List;
 
 /**
@@ -172,28 +175,58 @@ public class DetailsData {
             this.activity = activity;
         }
 
+        @Table(name = "goods")
         public static class GoodsBean {
+            private boolean click;
+
+            public boolean isClick() {
+                return click;
+            }
+
+            public void setClick(boolean click) {
+                this.click = click;
+            }
+
+            //id
+            @Column(isId = true, name = "id")
             private String id;
+            //商品数量
+            @Column(name = "goodsCounts")
+            private int goodsCounts;
+            //商品名称
+            @Column(name = "goods_name")
             private String goods_name;
+            //抵
+            @Column(name = "reservable", property = "false")
+            private boolean reservable;
+            //价格
+            @Column(name = "shop_price")
+            private double shop_price;
+            //是否全
+            @Column(name = "is_coupon_allowed", property = "false")
+            private boolean is_coupon_allowed;
+            @Column(name = "goods_img")
+            private String goods_img;
+            @Column(name = "restrict_purchase_num")
+            private int restrict_purchase_num;
+            private String watermarkUrl;
             private int stock_number;
             private int collect_count;
-            private double market_price;
-            private double shop_price;
             private double shipping_fee;
             private String goods_desc;
-            private String goods_img;
+
             private String is_on_sale;
             private double quality;
             private double valueformoney;
             private double desmatch;
             private int sales_volume;
-            private boolean reservable;
+            private double market_price;
             private String createuser;
             private String lastupdateuser;
             private int restriction;
-            private int restrict_purchase_num;
+
             private String is_activity_goods;
-            private boolean is_coupon_allowed;
+
             private int allocated_stock;
             private String efficacy;
             private int is_gift;
@@ -201,7 +234,8 @@ public class DetailsData {
             private String redeem_goods_restrict_flag;
             private String is_allow_credit;
             private double commission_scale;
-            private String watermarkUrl;
+
+
             private String goods_type;
             /**
              * id : 8101
@@ -214,12 +248,20 @@ public class DetailsData {
              */
 
             private List<GalleryBean> gallery;
+
             /**
              * id : 5230
              * goods_id : 1189
              * attr_name : 上市时间
              * attr_value : 2016年
              */
+            public int getGoodsCounts() {
+                return goodsCounts;
+            }
+
+            public void setGoodsCounts(int goodsCounts) {
+                this.goodsCounts = goodsCounts;
+            }
 
             private List<AttributesBean> attributes;
 

@@ -66,6 +66,7 @@ public class LaunchAdapter extends PagerAdapter {
                             context.startActivity(intent);
                             LaunchActivity activity = (LaunchActivity) context;
                             activity.finish();
+                            activity.overridePendingTransition(R.anim.login_in0, R.anim.login_out);
                         }
 
                         @Override
