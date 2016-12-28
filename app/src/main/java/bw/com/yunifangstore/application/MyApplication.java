@@ -2,6 +2,7 @@ package bw.com.yunifangstore.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Process;
 
@@ -23,6 +24,8 @@ public class MyApplication extends Application {
     private static Context context;
     private static Handler handler;
     private static int mainThreadId;
+    public static  boolean isLogin = true;
+    private static SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate() {
@@ -44,8 +47,13 @@ public class MyApplication extends Application {
         //qq登录
         PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
         UMShareAPI.get(this);
+//        sharedPreferences = context.getSharedPreferences("qqlogin",MODE_PRIVATE);
     }
-
+   /* public static void saveLogin() {
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("isLogin",isLogin);
+        edit.commit();
+    }*/
     /**
      * 获取上下文
      */

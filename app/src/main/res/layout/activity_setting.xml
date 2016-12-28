@@ -106,6 +106,7 @@
             android:background="#EEEEEE" />
         <!--关于我们-->
         <LinearLayout
+            android:id="@+id/about_we"
             android:background="@drawable/mine_item_bg"
             android:clickable="true"
             android:layout_width="match_parent"
@@ -139,6 +140,7 @@
         <!--拨打电话-->
 
         <LinearLayout
+            android:id="@+id/call_phone"
             android:background="@drawable/mine_item_bg"
             android:clickable="true"
             android:layout_width="match_parent"
@@ -169,6 +171,7 @@
 
         <!--检查更新-->
         <LinearLayout
+            android:id="@+id/update_layout"
             android:background="@drawable/mine_item_bg"
             android:clickable="true"
             android:layout_width="match_parent"
@@ -177,6 +180,7 @@
             android:padding="40px">
 
             <TextView
+                android:id="@+id/tv_update"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

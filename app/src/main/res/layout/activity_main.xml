@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <bw.com.yunifangstore.view.NoScrollViewPager
+    <bw.com.yunifangstore.view.LazyViewPager
         android:id="@+id/viewPager_Main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
     <RadioGroup
+        android:paddingTop="30px"
         android:id="@+id/radioGroup_Main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -88,7 +88,7 @@ public class ImageLoaderUtils {
                 // 是否考虑JPEG图像EXIF参数（旋转，翻转）
                 .considerExifParams(true)
                 // 设置图片以如何的编码方式显示
-                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
                 // 设置图片的解码类型//
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 // 设置图片的解码配置
@@ -126,7 +126,7 @@ public class ImageLoaderUtils {
                 // 是否考虑JPEG图像EXIF参数（旋转，翻转）
                 .considerExifParams(true)
                 // 设置图片以如何的编码方式显示
-                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
                 // 设置图片的解码类型//
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 // 设置图片的解码配置

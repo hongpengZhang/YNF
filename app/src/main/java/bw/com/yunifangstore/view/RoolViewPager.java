@@ -22,10 +22,8 @@ import bw.com.yunifangstore.utils.CommonUtils;
 import bw.com.yunifangstore.utils.ImageLoaderUtils;
 
 /**
- * @author : 张鸿鹏
- * @date : 2016/12/1.
+ * 无线轮播封装类类
  */
-
 public class RoolViewPager extends ViewPager {
 
     private DisplayImageOptions imageOptions;
@@ -34,16 +32,20 @@ public class RoolViewPager extends ViewPager {
     private int[] pic;
     private RoolViewPagerAdapter adapter;
     private static final int RoolZERO = 0;
-    private OnPageClickListener onPageClickListener;
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            //获取当前的ViewPager页
             int currentItem = RoolViewPager.this.getCurrentItem();
             currentItem++;
+            //设置当前
             RoolViewPager.this.setCurrentItem(currentItem);
+            //发送消息
             this.sendEmptyMessageDelayed(RoolZERO, 2000);
         }
     };
+    private OnPageClickListener onPageClickListener;
 
     public RoolViewPager(Context context) {
         super(context);
@@ -60,6 +62,14 @@ public class RoolViewPager extends ViewPager {
         imageOptions = ImageLoaderUtils.initOptions();
     }
 
+    /**
+     * 调用者也就是其他类的ViewPager传送的数据
+     *
+     * @param imageUrlList 显示图片的集合
+     * @param dotList  联动小点的集合(ImageView)
+     * @param pic      存放小点的数组
+     * @param onPageClickListener 自己设置的回调监听获取索引值
+     */
     public void initData(final ArrayList<String> imageUrlList, final ArrayList<ImageView> dotList, final int[] pic, OnPageClickListener onPageClickListener) {
         this.imageUrlList = imageUrlList;
         this.dotList = dotList;
@@ -67,6 +77,7 @@ public class RoolViewPager extends ViewPager {
         this.onPageClickListener = onPageClickListener;
         /**
          * 小点随之滑动
+         * 页面滑动监听
          */
         this.setOnPageChangeListener(new OnPageChangeListener() {
             @Override
@@ -99,11 +110,12 @@ public class RoolViewPager extends ViewPager {
             adapter = new RoolViewPagerAdapter();
         }
         this.setAdapter(adapter);
+        //发送消息
         handler.sendEmptyMessageDelayed(RoolZERO, 2000);
     }
 
     /**
-     * 内部类适配器
+     * 内部适配器类
      */
     public class RoolViewPagerAdapter extends PagerAdapter {
 
@@ -119,11 +131,13 @@ public class RoolViewPager extends ViewPager {
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
+            //加载布局视图
             View view = CommonUtils.inflate(R.layout.roolviewpager_item);
             ImageView iv_roolviewpager = (ImageView) view.findViewById(R.id.iv_roolviewpager);
+            //ImageLoader进行异步加载图片
             ImageLoader.getInstance().displayImage(imageUrlList.get(position % imageUrlList.size()), iv_roolviewpager, imageOptions);
             container.addView(view);
-            //冲突事件
+            //点击冲突事件
             view.setOnTouchListener(new OnTouchListener() {
 
                 private long downTime;
@@ -172,6 +186,7 @@ public class RoolViewPager extends ViewPager {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        //停止发送消息
         handler.removeCallbacksAndMessages(null);
     }
 }

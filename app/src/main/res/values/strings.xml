@@ -70,6 +70,7 @@
     <string name="click_login">点击登录</string>
 
     <string name="wait_pay">代付款</string>
+    <string name="order_all">全部</string>
 
     <string name="wait_send_good">代发货</string>
 
@@ -78,6 +79,8 @@
     <string name="wait_evaluate">待评价</string>
 
     <string name="wait_refund">退款</string>
+    <string name="refund_order">退款订单</string>
+    <string name="detail_order">订单详情</string>
 
     <string name="my_order">我的订单</string>
 
@@ -156,9 +159,9 @@
     <string name="title_activity_register">RegisterActivity</string>
     <!--<string name="pull_to_refresh_pull_label">下拉刷新</string>-->
 
-   <!-- <string name="pull_to_refresh_release_label">松开刷新</string>-->
+    <!-- <string name="pull_to_refresh_release_label">松开刷新</string>-->
 
-<!--    <string name="pull_to_refresh_refreshing_label">正在刷新\u2026</string>-->
+    <!--    <string name="pull_to_refresh_refreshing_label">正在刷新\u2026</string>-->
     <string name="pull_to_refresh_footer_release_label">松开加载更多</string>
 
     <string name="pull_to_refresh_footer_pull_label">上拉加载更多</string>

@@ -1,6 +1,5 @@
 package bw.com.yunifangstore.activity;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -37,10 +36,11 @@ public class WebActivity extends AutoLayoutActivity implements View.OnClickListe
         String webUrl = getIntent().getStringExtra("url");
 
         webView.loadUrl(webUrl);
+
         webView.setWebViewClient(new WebViewClient() {
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
                 String title = view.getTitle();
                 if (TextUtils.isEmpty(title)) {
                     share.setVisibility(View.INVISIBLE);

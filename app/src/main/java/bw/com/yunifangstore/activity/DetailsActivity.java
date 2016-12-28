@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -37,6 +38,7 @@ import bw.com.yunifangstore.adapter.ViewHolder;
 import bw.com.yunifangstore.base.BaseData;
 import bw.com.yunifangstore.bean.DetailsData;
 import bw.com.yunifangstore.bean.LargePictureData;
+import bw.com.yunifangstore.intent.IntentLoginActivity;
 import bw.com.yunifangstore.intent.IntentWebActivity;
 import bw.com.yunifangstore.utils.CommonUtils;
 import bw.com.yunifangstore.utils.DBUtils;
@@ -82,6 +84,7 @@ public class DetailsActivity extends AutoLayoutActivity implements View.OnClickL
     private ImageView shoppingcar_alertSubtra;
     private ImageView shoppingcar_alertAdd;
     private int goodsCounts = 1;
+    private String profile_image_url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,10 +93,13 @@ public class DetailsActivity extends AutoLayoutActivity implements View.OnClickL
         setContentView(R.layout.activity_details);
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
+
+        profile_image_url = CommonUtils.getSp("profile_image_url");
         //初始化控件
         initView();
         //请求数据
         requestData();
+
     }
 
 
@@ -294,17 +300,21 @@ public class DetailsActivity extends AutoLayoutActivity implements View.OnClickL
                 break;
             //添加购物车
             case R.id.sure_goods:
-                if (goods.getRestrict_purchase_num() == 0) {
-                    Toast.makeText(this, "此商品限货", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (isWho) {
-                        isSure = true;
-                        Toast.makeText(DetailsActivity.this, "恭喜,添加购物车成功。", Toast.LENGTH_SHORT).show();
+                //是否登录
+                if (TextUtils.isEmpty(profile_image_url)) {
+                    IntentLoginActivity.intentDetailActivity(DetailsActivity.this);
+                }else {
+                    if (goods.getRestrict_purchase_num() == 0) {
+                        Toast.makeText(this, "此商品限货", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(DetailsActivity.this, "立即购买", Toast.LENGTH_SHORT).show();
+                        if (isWho) {
+                            isSure = true;
+                            Toast.makeText(DetailsActivity.this, "恭喜,添加购物车成功。", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(DetailsActivity.this, "立即购买", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
-
                 popupWindow.dismiss();
                 break;
             //关闭
@@ -343,10 +353,15 @@ public class DetailsActivity extends AutoLayoutActivity implements View.OnClickL
                 break;
             //跳转到购物车
             case R.id.but_title_shopping:
-                Intent intent = new Intent(DetailsActivity.this, MainActivity.class);
-                intent.putExtra("cart", true);
-                startActivity(intent);
-                overridePendingTransition(R.anim.login_in, R.anim.login_in0);
+
+                if (TextUtils.isEmpty(profile_image_url)) {
+                    IntentLoginActivity.intentDetailActivity(DetailsActivity.this);
+                }else {
+                    Intent intent = new Intent(DetailsActivity.this, MainActivity.class);
+                    intent.putExtra("cart", true);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.login_in, R.anim.login_in0);
+                }
                 break;
 
         }

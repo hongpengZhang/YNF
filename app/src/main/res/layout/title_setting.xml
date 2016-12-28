@@ -36,7 +36,7 @@
         android:textColor="@color/colorTextMain"
         android:text="编辑"
         android:id="@+id/bianji"
-        android:layout_width="120px"
+        android:layout_width="wrap_content"
         android:layout_height="120px"
         android:gravity="center" />
 

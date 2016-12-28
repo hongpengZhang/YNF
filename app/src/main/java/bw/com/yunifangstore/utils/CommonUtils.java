@@ -1,6 +1,7 @@
 package bw.com.yunifangstore.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,9 @@ import android.view.View;
 import bw.com.yunifangstore.application.MyApplication;
 
 public class CommonUtils {
+
+    private static SharedPreferences sharedPreferences;
+
     public static Context getContext() {
         return MyApplication.getContext();
     }
@@ -72,7 +76,31 @@ public class CommonUtils {
         float density = getResources().getDisplayMetrics().density;
         return (int) (px / density + 0.5);
     }
+    //存入sharedPreferences对象中
+    public static void saveSp(String key, String values) {
+        if (sharedPreferences == null) {
+            sharedPreferences = getContext().getSharedPreferences("disPlayQQ", Context.MODE_PRIVATE);
+        }
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString(key, values);
+        edit.commit();
+    }
 
+    //取sharedPreferences中的值
+    public static String getSp(String key) {
+        if (sharedPreferences == null) {
+            sharedPreferences = getContext().getSharedPreferences("disPlayQQ", getContext().MODE_PRIVATE);
+        }
+        return sharedPreferences.getString(key, "");
+    }
+    public static void removeSp(String flag){
+        if (sharedPreferences == null) {
+            sharedPreferences = getContext().getSharedPreferences("disPlayQQ", getContext().MODE_PRIVATE);
+        }
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.remove(flag);
+        edit.commit();
+    }
     /**
      * 判断当前线程是否在主线程中
      */

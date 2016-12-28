@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="30px"
+    android:paddingTop="30px"
+    >
+
+
+        <ImageView
+            android:id="@+id/cart_image"
+            android:layout_width="240px"
+            android:layout_height="240px"
+            android:layout_marginLeft="30px"
+            android:background="@drawable/sharp_activity_info"
+            android:src="@mipmap/coupon_unuse_bottle" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px">
+
+            <TextView
+                android:id="@+id/goods_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lines="3"
+                android:text="推荐推荐推荐推荐推荐推荐推荐"
+                android:textColor="#000"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/goods_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/goods_name"
+                android:layout_marginTop="30px"
+                android:text="￥ 79.00"
+                android:textColor="@color/colorTextMain"
+                android:textSize="45px" />
+
+            <TextView
+                android:id="@+id/goods_nummber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/goods_price"
+                android:layout_marginLeft="40px"
+                android:layout_toRightOf="@+id/goods_price"
+                android:text="数量:1"
+                android:textSize="36px" />
+
+            <ImageView
+                android:id="@+id/iv_dijuan"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="20px"
+                android:src="@mipmap/pledge"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/juan"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_alignBottom="@+id/iv_dijuan"
+                android:layout_toLeftOf="@+id/iv_dijuan"
+                android:src="@mipmap/coupons"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+
+</LinearLayout>

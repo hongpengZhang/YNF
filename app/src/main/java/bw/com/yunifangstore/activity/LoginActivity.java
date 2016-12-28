@@ -74,6 +74,10 @@ public class LoginActivity extends AutoLayoutActivity implements View.OnClickLis
             //返回
             case R.id.but_title_left_image:
                 finish();
+                //跳转到第四个Fragment
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                intent.putExtra("login",true);
+                startActivity(intent);
                 overridePendingTransition(R.anim.login_in0, R.anim.login_out);
                 break;
             //其他登录的方式
@@ -104,9 +108,12 @@ public class LoginActivity extends AutoLayoutActivity implements View.OnClickLis
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
             String screen_name = data.get("screen_name");
-            String uid = data.get("uid");
             String profile_image_url = data.get("profile_image_url");
-            Toast.makeText(getApplicationContext(), "screen_name" + screen_name + " uid" + uid + " profile_image_url" + profile_image_url, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"screen_name" + screen_name + " profile_image_url" + profile_image_url, Toast.LENGTH_SHORT).show();
+            CommonUtils.saveSp("profile_image_url", profile_image_url);
+            CommonUtils.saveSp("screen_name", screen_name);
+            finish();
+
         }
 
         @Override

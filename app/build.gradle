@@ -11,12 +11,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -32,4 +40,14 @@ dependencies {
     compile project(':springviewlibrary')
     compile 'com.android.support:recyclerview-v7:23.0.0'
     compile files('libs/umeng_social_api.jar')
+    compile files('libs/zxing.jar')
+    compile files('libs/baidumapapi_base_v4_1_1.jar')
+    compile files('libs/baidumapapi_cloud_v4_1_1.jar')
+    compile files('libs/baidumapapi_map_v4_1_1.jar')
+    compile files('libs/baidumapapi_radar_v4_1_1.jar')
+    compile files('libs/baidumapapi_search_v4_1_1.jar')
+    compile files('libs/baidumapapi_util_v4_1_1.jar')
+    compile files('libs/locSDK_6.13.jar')
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile files('libs/alipaySdk-20160223.jar')
 }

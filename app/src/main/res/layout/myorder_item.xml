@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:background="#fff"
+            android:id="@+id/status_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30px"
+            android:text="待付款"
+            android:textColor="@color/colorTextMain"
+            android:textSize="40px" />
+
+        <bw.com.yunifangstore.view.MyListView
+            android:layout_marginTop="15px"
+            android:background="#fff"
+            android:id="@+id/listView_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:textColor="#99000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="20px">
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/gong_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40px"
+                android:text="共1件商品 合计:$119.90"
+                android:textSize="40px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="20px">
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/delete_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20px"
+                android:background="@drawable/sharp_activity_info"
+                android:padding="40px"
+                android:text="删除订单"
+                android:textSize="40px" />
+            <TextView
+                android:id="@+id/cancel_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20px"
+                android:background="@drawable/sharp_activity_info"
+                android:padding="40px"
+                android:text="取消订单"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/pay_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10px"
+                android:background="@color/colorTextMain"
+                android:padding="40px"
+                android:text="订单付款"
+                android:textColor="#fff"
+                android:textSize="40px" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

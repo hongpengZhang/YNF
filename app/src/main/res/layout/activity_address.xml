@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30px">
+
+        <ImageView
+            android:id="@+id/address_news_back_but"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/address_news_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="选择收货地址"
+            android:textColor="#323232"
+            android:textSize="45px" />
+
+        <TextView
+            android:id="@+id/address_news_baocun_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="管理"
+            android:textColor="#FDA6B7"
+            android:textSize="40px" />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#000" />
+
+    <ListView
+        android:id="@+id/adress_listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#000"
+        />
+    <Button
+        android:layout_marginTop="10px"
+        android:gravity="center"
+        android:id="@+id/add_address"
+        android:layout_width="300px"
+        android:layout_height="90px"
+        android:background="@drawable/login_but_selector"
+        android:text="添加收货地址"
+        android:textColor="@color/colorWrite" />
+
+</LinearLayout>

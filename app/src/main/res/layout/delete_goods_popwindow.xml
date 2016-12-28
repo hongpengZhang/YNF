@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<RelativeLayout
+
+    android:layout_marginTop="100px"
+    android:paddingLeft="120px"
+    android:paddingRight="120px"
+    android:layout_centerInParent="true"
+    android:background="#fff"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+        android:id="@+id/tvv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="确定删除选中的商品吗?"
+        android:textColor="#000"
+        android:textSize="45px" />
+
+    <TextView
+        android:id="@+id/sure_deletegoods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvv"
+        android:layout_below="@+id/tvv"
+        android:layout_marginLeft="10px"
+        android:layout_marginTop="120px"
+        android:text="删除"
+        android:textColor="@color/colorTextMain"
+        android:textSize="45px" />
+
+    <TextView
+        android:id="@+id/cancle_deletegoods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/tvv"
+        android:layout_below="@+id/tvv"
+        android:layout_marginLeft="10px"
+        android:layout_marginTop="120px"
+        android:text="取消"
+        android:textColor="@color/colorTextMain"
+        android:textSize="45px" />
+
+</RelativeLayout>
+
+</RelativeLayout>
+
+

@@ -3,6 +3,7 @@ package bw.com.yunifangstore.bean;
 import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -176,7 +177,7 @@ public class DetailsData {
         }
 
         @Table(name = "goods")
-        public static class GoodsBean {
+        public static class GoodsBean implements Serializable{
             private boolean click;
 
             public boolean isClick() {

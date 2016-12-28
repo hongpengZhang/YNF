@@ -4,19 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.text.TextUtils;
 import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import bw.com.yunifangstore.R;
 import bw.com.yunifangstore.factory.FragmentFactory;
-import bw.com.yunifangstore.view.NoScrollViewPager;
+import bw.com.yunifangstore.intent.IntentLoginActivity;
+import bw.com.yunifangstore.utils.CommonUtils;
+import bw.com.yunifangstore.view.LazyViewPager;
 
 public class MainActivity extends AutoLayoutActivity {
 
-    NoScrollViewPager viewPager;
+    LazyViewPager viewPager;
     public static RadioGroup radioGroup;
 
 
@@ -36,6 +40,18 @@ public class MainActivity extends AutoLayoutActivity {
         if (intent.getBooleanExtra("cart", false)) {
             ((RadioButton) radioGroup.getChildAt(2)).setChecked(true);
         }
+
+        if (intent.getBooleanExtra("login", false)) {
+            if (viewPager.getCurrentItem() == 0) {
+                ((RadioButton) radioGroup.getChildAt(0)).setChecked(true);
+            }
+            if (viewPager.getCurrentItem() == 1) {
+                ((RadioButton) radioGroup.getChildAt(1)).setChecked(true);
+            }
+            if (viewPager.getCurrentItem() == 3) {
+                ((RadioButton) radioGroup.getChildAt(3)).setChecked(true);
+            }
+        }
     }
 
     /**
@@ -53,7 +69,7 @@ public class MainActivity extends AutoLayoutActivity {
                 return 4;
             }
         });
-        viewPager.setOffscreenPageLimit(3);
+//        viewPager.setOffscreenPageLimit(3);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -66,7 +82,13 @@ public class MainActivity extends AutoLayoutActivity {
                         viewPager.setCurrentItem(1);
                         break;
                     case R.id.rb_cart:
-                        viewPager.setCurrentItem(2);
+                        String profile_image_url = CommonUtils.getSp("profile_image_url");
+                        if (!TextUtils.isEmpty(profile_image_url)) {
+                            viewPager.setCurrentItem(2);
+                        } else {
+                            IntentLoginActivity.intentDetailActivity(MainActivity.this);
+                            ((RadioButton) radioGroup.getChildAt(3)).setChecked(true);
+                        }
                         break;
                     case R.id.rb_mine:
                         viewPager.setCurrentItem(3);
@@ -77,11 +99,27 @@ public class MainActivity extends AutoLayoutActivity {
         });
     }
 
+
     /**
      * 初始化控件
      */
     private void initView() {
-        viewPager = (NoScrollViewPager) findViewById(R.id.viewPager_Main);
+        viewPager = (LazyViewPager) findViewById(R.id.viewPager_Main);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup_Main);
+    }
+
+
+    private long mPressedTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        //获取第一次按键时间
+        long mNowTime = System.currentTimeMillis();
+        if ((mNowTime - mPressedTime) > 2000) {
+            Toast.makeText(this, "再按一次退出应用程序", Toast.LENGTH_SHORT).show();
+            mPressedTime = mNowTime;
+        } else {
+            finish();
+        }
     }
 }

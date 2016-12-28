@@ -21,5 +21,18 @@
         <item name="android:windowExitAnimation">@anim/pop_hide</item>
         <!-- 指定消失的动画xml -->
     </style>
+    <style name="deletepopwindow_style">
+        <item name="android:windowEnterAnimation">@anim/pop_show2</item>
+        <!-- 指定显示的动画xml -->
 
+        <item name="android:windowExitAnimation">@anim/pop_hide2</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+    <style name="progressbar_style1">
+        <item name="android:maxWidth">50.0dip</item>
+        <item name="android:maxHeight">50.0dip</item>
+        <item name="android:indeterminateDrawable">@anim/loading_animation</item>
+        <item name="android:minWidth">50.0dip</item>
+        <item name="android:minHeight">50.0dip</item>
+    </style>
 </resources>

@@ -2,7 +2,6 @@ package bw.com.yunifangstore.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
+import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +29,7 @@ import bw.com.yunifangstore.interfaceclass.OnItemClickListener;
 import bw.com.yunifangstore.utils.URLUtils;
 import bw.com.yunifangstore.view.ShowingPage;
 
-public class AllGoodsActivity extends AppCompatActivity implements View.OnClickListener, SpringView.OnFreshListener {
+public class AllGoodsActivity extends AutoLayoutActivity implements View.OnClickListener, SpringView.OnFreshListener {
     private ImageView but_title_left_image;
     private RadioGroup radioGroup;
     private ArrayList<QueryGoods.DataBean> list = new ArrayList<>();

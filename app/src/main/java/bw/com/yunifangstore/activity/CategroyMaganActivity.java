@@ -112,6 +112,7 @@ public class CategroyMaganActivity extends AutoLayoutActivity implements View.On
     }
 
     private void setRadioPosition(int position) {
+
         ((RadioButton) maganradioGroup.getChildAt(position)).setChecked(true);
     }
 

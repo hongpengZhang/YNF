@@ -50,7 +50,6 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     private List<CategoryData.DataBean.CategoryBean.ChildrenBean> childrenList;
     private List<CategoryData.DataBean.CategoryBean.ChildrenBean> categoryList;
     private ArrayList<CategoryData.DataBean.CategoryBean.ChildrenBean> list = new ArrayList<>();
-    private int b = 0;
     private LinearLayout effect_llt_layout;
 
     @Override
@@ -159,6 +158,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         effect_llt_layout = (LinearLayout) view.findViewById(R.id.effect_llt_layout);
         for (int i = 0; i < effect_llt_layout.getChildCount(); i++) {
             effect_llt_layout.getChildAt(i).setOnClickListener(this);
+
         }
         return view;
     }
@@ -169,13 +169,8 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         for (int i = 0; i < effect_llt_layout.getChildCount(); i++) {
             ImageView childAt = (ImageView) effect_llt_layout.getChildAt(i);
             if (childAt.getId() == v.getId()) {
-                b++;
-                if (b == 1) {
-                    intentMaganActivity(categoryData.getData().getCategory().get(0).getCat_name(), categoryData.getData().getCategory().get(0).getChildren(), i);
-                    b = 0;
-                } else {
+                  intentMaganActivity(categoryData.getData().getCategory().get(0).getCat_name(), categoryData.getData().getCategory().get(0).getChildren(), i);
                     return;
-                }
             }
         }
         switch (v.getId()) {
@@ -238,7 +233,6 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         in.putExtra("id", categoryList.get(i).getId() + "");
         startActivity(in);
         getActivity().overridePendingTransition(R.anim.login_in, R.anim.login_in0);
-
     }
 
     class MyCategoryData extends BaseData {

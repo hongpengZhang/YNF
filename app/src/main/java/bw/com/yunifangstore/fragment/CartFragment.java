@@ -1,39 +1,43 @@
 package bw.com.yunifangstore.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.xutils.ex.DbException;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import bw.com.yunifangstore.R;
 import bw.com.yunifangstore.activity.MainActivity;
+import bw.com.yunifangstore.activity.OrderActivity;
 import bw.com.yunifangstore.adapter.CommonAdapter;
 import bw.com.yunifangstore.adapter.ViewHolder;
+import bw.com.yunifangstore.base.BaseFragment;
 import bw.com.yunifangstore.bean.DetailsData;
+import bw.com.yunifangstore.intent.IntentDetailActivity;
 import bw.com.yunifangstore.utils.CommonUtils;
 import bw.com.yunifangstore.utils.DBUtils;
 import bw.com.yunifangstore.view.MyListView;
+import bw.com.yunifangstore.view.ShowingPage;
 
 
-public class CartFragment extends Fragment implements View.OnClickListener {
-
+public class CartFragment extends BaseFragment implements View.OnClickListener {
 
     private TextView bianji;
     private Button bt_guang;
@@ -48,24 +52,31 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     private ArrayList<DetailsData.DataBean.GoodsBean> beanList = new ArrayList<>();
     private TextView cart_sumMoney;
     private CheckBox all_selectGoods;
+    private View inflate;
+    private PopupWindow popupWindow;
 
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflate = initView();
+    public void onLoad() {
+        CartFragment.this.showCurrentPage(ShowingPage.StateType.STATE_LOAD_SUCCESS);
+    }
+
+    @Override
+    protected View createSuccessView() {
+        inflate = initView();
         return inflate;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        CartFragment.this.showCurrentPage(ShowingPage.StateType.STATE_LOAD_SUCCESS);
         try {
             List<DetailsData.DataBean.GoodsBean> all = DBUtils.getDb().findAll(DetailsData.DataBean.GoodsBean.class);
             if (all != null) {
                 beanList.clear();
                 beanList.addAll(all);
-
             }
         } catch (DbException e) {
             e.printStackTrace();
@@ -104,10 +115,18 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void convert(ViewHolder helper, final DetailsData.DataBean.GoodsBean item) {
                     View convertView = helper.getConvertView();
+                    final int position = helper.getPosition();
+                    //跳转到详情
+                    convertView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            IntentDetailActivity.intentDetailActivity(getActivity(), beanList.get(position).getId());
+                        }
+                    });
+
                     ImageView juan = helper.getView(R.id.juan);
                     TextView goods_nummber = helper.getView(R.id.goods_nummber);
                     ImageView iv_dijuan = helper.getView(R.id.iv_dijuan);
-                    final int position = helper.getPosition();
 
                     final TextView shoppingcar_alertNum = (TextView) convertView.findViewById(R.id.shoppingcar_alertNum);
                     ImageButton shoppingcar_alertSubtra = (ImageButton) convertView.findViewById(R.id.shoppingcar_alertSubtra);
@@ -122,7 +141,6 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                                 item.setGoodsCounts(count);
                                 shoppingcar_alertNum.setText(count + "");
                             }
-                            notifyDataSetChanged();
                         }
                     });
                     //加
@@ -132,7 +150,6 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                             int count = item.getGoodsCounts() + 1;
                             item.setGoodsCounts(count);
                             shoppingcar_alertNum.setText(count + "");
-                            notifyDataSetChanged();
                         }
                     });
 
@@ -185,6 +202,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 }
             };
             cart_myListView.setAdapter(commonAdapter);
+
         }
     }
 
@@ -278,28 +296,85 @@ public class CartFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getActivity(), "您还没有选中任何商品", Toast.LENGTH_SHORT).show();
         } else {
             if (bt_jiesun.getText().equals("删除")) {
-                for (int i = 0; i < beanList.size(); i++) {
-                    if (beanList.get(i).isClick()) {
-                        //删除数据库
-                        try {
-                            DBUtils.getDb().delete(beanList.get(i));
-                        } catch (DbException e) {
-                            e.printStackTrace();
-                        }
-                        //删除集合
-                        beanList.remove(i);
-                    }
-                }
-                Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_SHORT).show();
-                setMyCartAdapter();
-
+                View inflate = initpopView();
+                addGoodsCart(inflate);
             } else {
-                getMoney();
+                //跳转到订单界面
+                Intent intent = new Intent(getActivity(), OrderActivity.class);
+                intent.putExtra("sum",getMoney());
+                intent.putExtra("list", beanList);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.login_in, R.anim.login_in0);
+
             }
         }
         commonAdapter.notifyDataSetChanged();
     }
 
+    private View initpopView() {
+        View inflate = CommonUtils.inflate(R.layout.delete_goods_popwindow);
+        TextView sure_deletegoods = (TextView) inflate.findViewById(R.id.sure_deletegoods);
+        TextView cancle_deletegoods = (TextView) inflate.findViewById(R.id.cancle_deletegoods);
+        sure_deletegoods.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = beanList.size() - 1; i >= 0; i--) {
+                    if (beanList.get(i).isClick()) {
+                        //删除数据库
+                        try {
+                            DBUtils.getDb().delete(beanList.get(i));
+                            //删除集合
+                            beanList.remove(beanList.get(i));
+                        } catch (DbException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
+                setMyCartAdapter();
+            }
+        });
+        cancle_deletegoods.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+        return inflate;
+    }
+
+    private void addGoodsCart(View view) {
+        popupWindow = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT);
+        // 设置popWindow弹出窗体可点击，这句话必须添加，并且是true
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.setAnimationStyle(R.style.deletepopwindow_style);
+        // 在底部显示
+        popupWindow.showAtLocation(inflate, Gravity.CENTER, 0, 0);
+
+        backgroundAlpha(0.4f);
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                backgroundAlpha(1);
+            }
+        });
+
+    }
+
+    public void backgroundAlpha(float bgAlpha) {
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getActivity().getWindow().setAttributes(lp);
+
+    }
+
+    /**
+     * 保存数据库并更新
+     */
     @Override
     public void onPause() {
         super.onPause();
@@ -323,17 +398,19 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     /**
      * 获取价格
      */
-    private void getMoney() {
+    public float getMoney() {
 
         float GoodsSum = 0;
+        DecimalFormat df = new DecimalFormat("###.00");
         for (int j = 0; j < beanList.size(); j++) {
             if (beanList.get(j).isClick()) {
                 GoodsSum = (float) (GoodsSum + (beanList.get(j).getShop_price() * beanList.get(j).getGoodsCounts()));
-                cart_sumMoney.setText("总计 :￥" + GoodsSum);
+                cart_sumMoney.setText("总计 :￥" + df.format(GoodsSum));
             } else {
-                cart_sumMoney.setText("总计 :￥" + GoodsSum);
+                cart_sumMoney.setText("总计 :￥" + df.format(GoodsSum));
             }
 
         }
+        return GoodsSum;
     }
 }

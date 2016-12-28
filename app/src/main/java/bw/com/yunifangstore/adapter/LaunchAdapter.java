@@ -28,7 +28,6 @@ public class LaunchAdapter extends PagerAdapter {
         this.pic = pic;
         this.context = context;
     }
-
     @Override
     public int getCount() {
         return pic.length;
@@ -41,41 +40,46 @@ public class LaunchAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
+
         View view = CommonUtils.inflate(R.layout.activity_launch2);
         ImageView viewPager_iv = (ImageView) view.findViewById(R.id.viewPager_iv);
         viewPager__iv_hide = (ImageView) view.findViewById(R.id.viewPager__iv_hide);
         viewPager_iv.setBackgroundResource(pic[position]);
         container.addView(view);
+
         if (position == pic.length - 1) {
             viewPager__iv_hide.setVisibility(View.VISIBLE);
-            viewPager__iv_hide.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0, Animation.RELATIVE_TO_PARENT, -1, Animation.RELATIVE_TO_PARENT, 0, Animation.RELATIVE_TO_PARENT, 0);
-                    translateAnimation.setFillAfter(true);
-                    translateAnimation.setDuration(2000);
-                    viewPager__iv_hide.startAnimation(translateAnimation);
-                    translateAnimation.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                        }
 
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            Intent intent = new Intent(context, MainActivity.class);
-                            context.startActivity(intent);
-                            LaunchActivity activity = (LaunchActivity) context;
-                            activity.finish();
-                            activity.overridePendingTransition(R.anim.login_in0, R.anim.login_out);
-                        }
+                viewPager__iv_hide.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0, Animation.RELATIVE_TO_PARENT, -1, Animation.RELATIVE_TO_PARENT, 0, Animation.RELATIVE_TO_PARENT, 0);
+                        translateAnimation.setFillAfter(true);
+                        translateAnimation.setDuration(2000);
+                        viewPager__iv_hide.startAnimation(translateAnimation);
+                        translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+                            }
 
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
 
-                        }
-                    });
-                }
-            });
+                                Intent intent = new Intent(context, MainActivity.class);
+                                context.startActivity(intent);
+                                LaunchActivity activity = (LaunchActivity) context;
+                                activity.finish();
+                                activity.overridePendingTransition(R.anim.login_in0, R.anim.login_out);
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+                            }
+                        });
+                    }
+                });
+
+
         }
 
         return view;

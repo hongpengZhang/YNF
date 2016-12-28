@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -57,43 +56,46 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      */
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int i) {
-        if (i == 6) {
+       /* if (i == 6) {
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setImageResource(R.mipmap.weibu);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "饿呢", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            String goods_name = bestSellersBean.getGoodsList().get(i).getGoods_name();
-            if (goods_name.length() > 14) {
-                viewHolder.selling_rv_item_des.setText(goods_name.substring(0, 14) + "...");
-            } else {
-                viewHolder.selling_rv_item_des.setText(goods_name);
-            }
-            viewHolder.selling_rv_item_newprice.setText("￥" + bestSellersBean.getGoodsList().get(i).getShop_price());
-            viewHolder.selling_rv_item_oldprice.setText("￥" + bestSellersBean.getGoodsList().get(i).getMarket_price());
-            viewHolder.selling_rv_item_oldprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-            ImageLoader.getInstance().displayImage(bestSellersBean.getGoodsList().get(i).getGoods_img(), viewHolder.selling_rv_item_img, ImageLoaderUtils.initOptions());
-            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClickListener.setOnItemClickListener(i);
-                }
-            });
-       }
 
+                }
+            });
+        } else {*/
+        String goods_name = bestSellersBean.getGoodsList().get(i).getGoods_name();
+        if (goods_name.length() > 14) {
+            viewHolder.selling_rv_item_des.setText(goods_name.substring(0, 14) + "...");
+        } else {
+            viewHolder.selling_rv_item_des.setText(goods_name);
+        }
+        viewHolder.selling_rv_item_newprice.setText("￥" + bestSellersBean.getGoodsList().get(i).getShop_price());
+        viewHolder.selling_rv_item_oldprice.setText("￥" + bestSellersBean.getGoodsList().get(i).getMarket_price());
+        viewHolder.selling_rv_item_oldprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        ImageLoader.getInstance().displayImage(bestSellersBean.getGoodsList().get(i).getGoods_img(), viewHolder.selling_rv_item_img, ImageLoaderUtils.initOptions());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.setOnItemClickListener(i);
+
+                }
+            }
+        });
     }
+
+   /* }*/
 
     /**
      * 条目总数
      */
     @Override
     public int getItemCount() {
-        return 7;
+        return bestSellersBean.getGoodsList().size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

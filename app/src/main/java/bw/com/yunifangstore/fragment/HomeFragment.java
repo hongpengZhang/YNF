@@ -34,6 +34,7 @@ import bw.com.yunifangstore.adapter.ViewHolder;
 import bw.com.yunifangstore.base.BaseData;
 import bw.com.yunifangstore.base.BaseFragment;
 import bw.com.yunifangstore.bean.RoolData;
+import bw.com.yunifangstore.intent.IntentDetailActivity;
 import bw.com.yunifangstore.intent.IntentWebActivity;
 import bw.com.yunifangstore.interfaceclass.OnItemClickListener;
 import bw.com.yunifangstore.interfaceclass.OnPageClickListener;
@@ -168,14 +169,12 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerViewAdapter = new RecyclerViewAdapter(roolData.getData().getBestSellers().get(0), getActivity());
             recyclerView.setAdapter(recyclerViewAdapter);
+
             recyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
                 @Override
                 public void setOnItemClickListener(int potision) {
-                    String id = roolData.getData().getBestSellers().get(0).getId();
-                   /* Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                    intent.putExtra("id", id);
-                    startActivity(intent);
-                    getActivity().overridePendingTransition(R.anim.login_in, R.anim.login_in0);*/
+                    String id = roolData.getData().getBestSellers().get(0).getGoodsList().get(potision).getId();
+                    IntentDetailActivity.intentDetailActivity(getActivity(),id);
                 }
             });
         }
@@ -219,7 +218,6 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
             @Override
             public void setOnPage(int position) {
                 IntentWebActivity.intentWebActivity(getActivity(), ad1List.get(position).getAd_type_dynamic_data());
-
             }
         });
         roolViewPager.setRoolAdapter();
@@ -230,7 +228,6 @@ public class HomeFragment extends BaseFragment implements SpringView.OnFreshList
      */
     @NonNull
     private View initView() {
-
         View view = View.inflate(getActivity(), R.layout.homefragment_layout, null);
         roolViewPager = (RoolViewPager) view.findViewById(R.id.roolViewPager);
         ll_layoutdots = (LinearLayout) view.findViewById(R.id.ll_layoutdots);

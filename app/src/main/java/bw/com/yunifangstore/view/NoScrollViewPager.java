@@ -10,6 +10,9 @@ import android.view.MotionEvent;
  * @date : 2016/11/28.
  */
 
+/**
+ * 此项目没有用
+ */
 public class NoScrollViewPager extends ViewPager {
     public NoScrollViewPager(Context context) {
         super(context);

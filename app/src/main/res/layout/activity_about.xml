@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="bw.com.yunifangstore.activity.AboutActivity">
+
+    <include layout="@layout/web_title" />
+
+    <ImageView
+        android:id="@+id/ynf"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:layout_above="@+id/iv_er_code"
+        android:layout_alignLeft="@+id/iv_er_code"
+        android:layout_marginBottom="40px"
+        android:src="@mipmap/myicon" />
+
+    <TextView
+        android:id="@+id/tvynf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ynf"
+        android:layout_marginLeft="20px"
+        android:layout_toRightOf="@id/ynf"
+        android:text="御泥坊"
+        android:textColor="#000"
+        android:textSize="35px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ynf"
+        android:layout_alignLeft="@+id/tvynf"
+        android:text="3.2.1"
+        android:textColor="#000"
+        android:textSize="35px"
+        />
+    <TextView
+        android:textColor="#000"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30px"
+        android:textSize="25px"
+        android:text="【推荐给好友扫一扫,马上下载】"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_er_code"
+        android:layout_centerHorizontal="true"
+        />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60px"
+        >
+        <TextView
+            android:id="@+id/tv1"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="御泥坊品牌 版权所有"
+            android:textSize="35px"
+            />
+        <TextView
+            android:id="@+id/tv2"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="公司官网 :www.yujiahui.com"
+            android:textSize="35px"
+            />
+        <TextView
+            android:id="@+id/tv3"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Copyright 2011御泥坊 湘icp备05019620号"
+            android:textSize="35px"
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_er_code"
+        android:layout_width="500px"
+        android:layout_height="500px"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
